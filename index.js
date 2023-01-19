@@ -1,28 +1,39 @@
 const register = () => {
-    var url = 'src/register.php'; // same domain var callback = function (text) {
-        // console.log(text); // do something with the data };
+    var url = 'src/register.php';
        
-    registerCall(url, {success: "hihi"});
+    registerCall(url);
 }
 
-function registerCall(url, settings){
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function(){
-      if (xhr.status == 200) {
+function registerCall(url){
+    const form = document.querySelector('#register-form');
+ 
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', url);
+      
+        let data = new FormData(form);
     
-        // console.log(settings.success);
-        console.log(xhr.response,"resp");
-  } else {
-        console.error(xhr.responseText);
-  } };
+        const values = [...data.entries()];
+  
+        var d = "";
+        for(const i of values) {
+            d += '&' + i[0] + '=' + i[1];
+        }
+        d = d.substring(1);
 
-  var username = document.getElementById("username");
-//   var password = document.getElementById("password");
-  var data = 'username='+username.value;
-  console.log(data);
-
-  xhr.open("POST", url, true);
-  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhr.send(data);
+        // set headers
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+      
+        // send request
+        xhr.send(d);
+      
+        // listen for `load` event
+        xhr.onload = () => {
+          console.log(xhr.responseText,"resp");
+        }
+      })
 }
   
