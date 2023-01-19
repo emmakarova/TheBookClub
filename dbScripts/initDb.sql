@@ -3,7 +3,7 @@
 create table users (
 	user_id serial primary key, 
 	username varchar (15) unique not null,
-	password varchar (20) unique not null
+	password varchar (120) unique not null
 );
 
 create table resources (
