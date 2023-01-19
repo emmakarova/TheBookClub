@@ -1,23 +1,28 @@
-
-const test = () => {
-    console.log("hi from js");
-    var url = 'src/connect.php'; // same domain var callback = function (text) {
+const register = () => {
+    var url = 'src/register.php'; // same domain var callback = function (text) {
         // console.log(text); // do something with the data };
        
-    ajax(url, {success: "hihi"});
-};
+    registerCall(url, {success: "hihi"});
+}
 
-function ajax(url, settings){
+function registerCall(url, settings){
     var xhr = new XMLHttpRequest();
     xhr.onload = function(){
       if (xhr.status == 200) {
     
-        console.log(settings.success);
-        console.log(xhr.response);
+        // console.log(settings.success);
+        console.log(xhr.response,"resp");
   } else {
         console.error(xhr.responseText);
   } };
-    xhr.open("GET", url, /* async */ true);
-    xhr.send();
-  }
+
+  var username = document.getElementById("username");
+//   var password = document.getElementById("password");
+  var data = 'username='+username.value;
+  console.log(data);
+
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send(data);
+}
   
