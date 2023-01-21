@@ -1,11 +1,10 @@
-const register = () => {
-    var url = 'src/register.php';
-       
-    registerCall(url);
+const login = () => {
+    var url = 'src/login.php';
+    loginCall(url);
 }
 
-function registerCall(url){
-    const form = document.querySelector('#register-form');
+function loginCall(url){
+    const form = document.querySelector('#login-form');
  
     form.addEventListener('submit', event => {
         event.preventDefault();
@@ -18,7 +17,7 @@ function registerCall(url){
         const values = [...data.entries()];
   
         var d = "";
-        for(const i of values) {
+        for (const i of values) {
             d += '&' + i[0] + '=' + i[1];
         }
         d = d.substring(1);
@@ -32,8 +31,8 @@ function registerCall(url){
       
         // listen for `load` event
         xhr.onload = () => {
-          console.log(xhr.responseText,"resp");
+            console.log(xhr.responseText,"resp");
         }
-      })
+    })
 }
   

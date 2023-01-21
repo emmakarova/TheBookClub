@@ -2,45 +2,48 @@
 
 require_once "../src/connect.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $confirm_password = $_POST["confirm_password"];
- 
-    $password_hash = password_hash($password, PASSWORD_BCRYPT);
-   
-    if($query = $db->prepare("select * from users where username = :username")) {
-        $error = '';
-
-        $query->execute(array(':username' => $username));
-
-        // $query->store_result();
-
-        if ($query->rowCount() > 0) {
-            $error .= '<p class="error">The email address is already registered!</p>';
-        } else {
-            if (empty($confirm_password)) {
-                $error .= '<p class="error">Please enter confirm password.</p>';
-            } else {
-                if (empty($error) && ($password != $confirm_password)) {
-                    $error .= '<p class="error">Password did not match.</p>';
-                }
-            }
-            if (empty($error) ) {
-                $insertQuery = $db->prepare("INSERT INTO users (username, password) VALUES (:username, :password);");
-                $insertQuery->bindParam("username", $username, PDO::PARAM_STR);
-                $insertQuery->bindParam("password", $password_hash, PDO::PARAM_STR);
-
-                $result = $insertQuery->execute();
-                if ($result) {
-                    $error .= '<p class="success">Your registration was successful!</p>';
-                } else {
-                    $error .= '<p class="error">Something went wrong!</p>';
-                }
-            }
-        }
-    }
-    // $query->close();
-    // $insertQuery->close();
+if (!$_POST) {
+    exit;
 }
+
+$username = $_POST['username'];
+$password = $_POST['password'];
+$confirm_password = $_POST["confirm_password"];
+
+$password_hash = password_hash($password, PASSWORD_BCRYPT);
+
+$query = $db->prepare("SELECT * FROM users
+                       WHERE username = :username");
+if (!$query) {
+    exit("Error preparing the statement.");
+}
+
+$query->bindParam("username", $username, PDO::PARAM_STR);
+if (!$query->execute()) {
+    exit('<p class="error">Something went wrong!</p>');
+}
+
+if ($query->rowCount() > 0) {
+    exit('<p class="error">This username is already used!</p>');
+}
+
+if ($password != $confirm_password) {
+    exit('<p class="error">Passwords did not match.</p>');
+}
+
+$insertQuery = $db->prepare("INSERT INTO users (username, password)
+                             VALUES (:username, :password);");
+if (!$insertQuery) {
+    exit("Error preparing the statement.");
+}
+
+$insertQuery->bindParam("username", $username, PDO::PARAM_STR);
+$insertQuery->bindParam("password", $password_hash, PDO::PARAM_STR);
+
+if (!$insertQuery->execute()) {
+    exit('<p class="error">Something went wrong!</p>');
+}
+
+exit('<p class="success">Your registration was successful!</p>');
+
 ?>
