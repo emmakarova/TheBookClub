@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
     static $db;
 
     if (!$db) {
-        $db = new PDO(sprintf("pgsql:host=%s;dbname=%s",DB_HOST,DB_NAME),DB_USER,DB_PASSWORD);
+        $db = new PDO(sprintf("mysql:host=%s;dbname=%s",DB_HOST,DB_NAME),DB_USER,DB_PASSWORD);
         $u = $db->query("select user_id from users")->fetch();
         // echo $u[0];
     }

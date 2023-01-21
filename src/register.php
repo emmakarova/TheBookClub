@@ -1,6 +1,6 @@
 <?php
 
-require_once "../src/connect.php";
+require "../src/connect.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
