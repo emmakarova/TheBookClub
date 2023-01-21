@@ -10,22 +10,52 @@ xhr.send();
 
 // listen for `load` event
 xhr.onload = () => {
-    console.log(xhr.response,"resp");
-    const newDiv = document.createElement("table");
+    console.log(xhr.responseText,"resp");
+    var list = jQuery.parseJSON(xhr.responseText);
 
-    // and give it some content
-    const newContent = document.createTextNode(xhr.response);
-  
-    // add the text node to the newly created div
-    newDiv.appendChild(newContent);
+    var cols = [];
+             
+    for (var i = 0; i < list.length; i++) {
+        for (var k in list[i]) {
+            if (cols.indexOf(k) === -1) {
+                    
+                // Push all keys to the array
+                cols.push(k);
+                console.log(k);
+            }
+        }
+    }
 
-    const currentDiv = document.getElementById("h1");
-    document.body.insertBefore(newDiv, currentDiv);
-    
-    // var t = document.getElementById("resources");
-    // var d = xhr.response;
-    
-    // for(let i = 0; i < d.length; i++) {
-    //     console.log(d.length);
-    // }
+    // Create a table element
+    var table = document.createElement("table");
+        
+    // Create table row tr element of a table
+    var tr = table.insertRow(-1);
+        
+    for (var i = 0; i < cols.length; i++) {
+            
+        // Create the table header th element
+        var theader = document.createElement("th");
+        theader.innerHTML = cols[i];
+            
+        // Append columnName to the table row
+        tr.appendChild(theader);
+    }
+        
+    // Adding the data to the table
+    for (var i = 0; i < list.length; i++) {
+            
+        // Create a new row
+        trow = table.insertRow(-1);
+        for (var j = 0; j < cols.length; j++) {
+            var cell = trow.insertCell(-1);
+                
+            // Inserting the cell at particular place
+            cell.innerHTML = list[i][cols[j]];
+        }
+    }
+
+    var el = document.getElementById("resources");
+    el.innerHTML = "";
+    el.appendChild(table);
 }
