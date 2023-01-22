@@ -1,5 +1,5 @@
 const login = () => {
-    var url = 'src/login.php';
+    var url = '../src/controllers/login.php';
     loginCall(url);
 }
 
@@ -31,7 +31,12 @@ function loginCall(url){
       
         // listen for `load` event
         xhr.onload = () => {
-            console.log(xhr.responseText,"resp");
+            if (xhr.status != 200) {
+                console.log("response = ", xhr.responseText,  "\nstatus = ", xhr.status);
+                return;
+            }
+            
+            window.location.href = xhr.responseText;
         }
     })
 }

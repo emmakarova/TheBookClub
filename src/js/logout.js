@@ -1,5 +1,5 @@
 const logout = () => {
-    var url = 'src/logout.php';
+    var url = '../src/controllers/logout.php';
     logoutCall(url);
 }
 
@@ -17,7 +17,7 @@ function logoutCall(url){
       
         // listen for `load` event
         xhr.onload = () => {
-            console.log(xhr.responseText,"resp");
+            window.location.href = xhr.responseText;
         }
     })
 }

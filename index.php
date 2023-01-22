@@ -1,2 +1,5 @@
 <?php
-header('Location: ./login.html');
+
+    header('Location: public/login.html');
+
+?>

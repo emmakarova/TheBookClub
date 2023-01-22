@@ -1,5 +1,5 @@
 const register = () => {
-    var url = 'src/register.php';
+    var url = '../src/controllers/register.php';
     registerCall(url);
 }
 
@@ -31,7 +31,12 @@ function registerCall(url){
       
         // listen for `load` event
         xhr.onload = () => {
-            console.log(xhr.responseText,"resp");
+            if (xhr.status != 200) {
+                console.log("response = ", xhr.responseText, "\nstatus = ", xhr.status);
+                return;
+            }
+
+            window.location.href = xhr.responseText;
         }
     })
 }
