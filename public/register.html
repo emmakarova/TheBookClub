@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Sign Up</title>
+
+        <script src="../src/js/register.js"></script>
+    </head>
+
+    <body>
+        <h2>Register</h2>
+        <form id="register-form" method="post">
+            <label>Username</label>
+            <input type="text" name="username" id="username" required>
+                    
+            <label>Password</label>
+            <input type="password" name="password" id="password" required>
+                
+            <label>Confirm Password</label>
+            <input type="password" name="confirm_password" id="confirm_password" required>
+                  
+            <input type="submit" name="submit" class="btn btn-primary" value="Submit" onclick="register()">
+  
+            <p>Already have an account? <a href="./login.html">Login here</a>.</p>
+        </form>
+    </body>
+    
+</html>
