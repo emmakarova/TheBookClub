@@ -6,7 +6,7 @@
     ob_clean();
     session_start();
 
-    if (!$_POST) {
+    if ($_SERVER["REQUEST_METHOD"] != "POST") {
         http_response_code(400);
         exit('<p class="error">Unexpected call!</p>');
     }
@@ -37,7 +37,7 @@
     $_SESSION['valid'] = true;
     $_SESSION['username'] = $username;
 
-    echo '../../public/afterLogin.html';
+    echo '../../public/homepage.html';
     exit();
 
 ?>

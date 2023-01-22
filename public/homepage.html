@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <meta charset="UTF-8">
-        <title>After Log in</title>
-    </head>
-    <body>
+        <title>Homepage</title>
+
+        <script src="../src/js/homepage.js"></script>
         <script src="../src/js/logout.js"></script>
-        <h2>After Log in</h2>
+    </head>
+
+    <body onload="homepage()">
+        <h2>Resources to be displayed</h2>
+        <p id="resources"></p> 
         <form id="form">
             <input type="submit" name="submit" class="btn btn-primary" value="Log out" onclick="logout()">
         </form>
     </body>
+    
 </html>

@@ -3,7 +3,7 @@ const login = () => {
     loginCall(url);
 }
 
-function loginCall(url){
+function loginCall(url) {
     const form = document.querySelector('#login-form');
  
     form.addEventListener('submit', event => {

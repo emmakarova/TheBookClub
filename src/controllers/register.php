@@ -1,9 +1,8 @@
 <?php
-
     require_once "./connect.php";
     require_once "../globals/queries.php";
 
-    if (!$_POST) {
+    if ($_SERVER["REQUEST_METHOD"] != "POST") {
         http_response_code(400);
         exit('<p class="error">Unexpected call!</p>');
     }
