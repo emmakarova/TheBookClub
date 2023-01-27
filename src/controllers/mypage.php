@@ -10,11 +10,6 @@
         exit('<p class="error">Unathorized!</p>');
     }
 
-    if ($_SERVER["REQUEST_METHOD"] != "GET") {
-        http_response_code(400);
-        exit('<p class="error">Unexpected call!</p>');
-    }
-
     // get user_id
     $username = $_SESSION["username"];
 
@@ -33,19 +28,65 @@
     $result = $getUserIdquery->fetchAll();
     $userId = $result[0]['user_id'];
 
+    if ($_SERVER["REQUEST_METHOD"] == "GET") {
+        return getCurrentlyReading($db, $userId);
+    } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        return returnResource($db, $userId);
+    } else {
+        http_response_code(400);
+        exit('<p class="error">Unexpected call!</p>');
+    }
+
     // get all currently reading resources for this user
-    $query = $db->prepare(GET_CURRENTLY_READING);
-    if(!$query) {
-        http_response_code(500);
-        exit('Error preparing the statement.');
+    function getCurrentlyReading($db, $userId) {
+        $query = $db->prepare(GET_CURRENTLY_READING);
+        if (!$query) {
+            http_response_code(500);
+            exit('Error preparing the statement.');
+        }
+
+        $query->bindParam(USER_ID_PARAM, $userId, PDO::PARAM_INT);
+        if (!$query->execute()) {
+            http_response_code(500);
+            exit('<p class="error">Something went wrong!</p>');
+        }
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        echo json_encode($result);
     }
 
-    $query->bindParam(USER_ID_PARAM, $userId, PDO::PARAM_INT);
-    if (!$query->execute()) {
-        http_response_code(500);
-        exit('<p class="error">Something went wrong!</p>');
-    }
-    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    // return resource with 'resource_id' taken from this user
+    function returnResource($db, $userId) {
+        $resourceId = $_POST["resource_id"];
 
-    echo json_encode($result);
+        $query = $db->prepare(RETURN_RESOURCE);
+        if(!$query) {
+            http_response_code(500);
+            exit('Error preparing the statement.');
+        }
+
+        $query->bindParam(RESOURCE_ID_PARAM, $resourceId, PDO::PARAM_INT);
+        $query->bindParam(USER_ID_PARAM, $userId, PDO::PARAM_INT);
+        if (!$query->execute()) {
+            http_response_code(500);
+            exit('<p class="error">Something went wrong!</p>');
+        }
+
+        // add rate
+        $rate = $_POST["rate"];
+
+        $addRateQuery = $db->prepare(ADD_RATE);
+        if(!$addRateQuery) {
+            http_response_code(500);
+            exit('Error preparing the statement.');
+        }
+
+        $addRateQuery->bindParam(RESOURCE_ID_PARAM, $resourceId, PDO::PARAM_INT);
+        $addRateQuery->bindParam(USER_ID_PARAM, $userId, PDO::PARAM_INT);
+        $addRateQuery->bindParam(RATE_PARAM, $rate, PDO::PARAM_INT);
+        if (!$addRateQuery->execute()) {
+            http_response_code(500);
+            exit('<p class="error">Something went wrong!</p>');
+        }
+    }
 ?>

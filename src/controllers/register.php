@@ -34,6 +34,7 @@
         http_response_code(403);
         exit('<p class="error">Passwords did not match.</p>');
     }
+    
     $insertQuery = $db->prepare(INSERT_USER);
     if (!$insertQuery) {
         http_response_code(500);
