@@ -13,7 +13,8 @@ insert into resources_taken(resource_id, user_id) values (2, 1);
 insert into resources_taken(resource_id, user_id) values (1, 1);
 insert into resources_taken(resource_id, user_id) values (2, 2);
 
-insert into resources_taken(resource_id, user_id) values (3, 2);
+insert into rates(resource_id, user_id, rate) values (1, 1, 5);
+insert into rates(resource_id, user_id, rate) values (1, 2, 4);
 
 delete from resources_taken
 where resource_id = 1 and user_id = 2;
@@ -21,6 +22,7 @@ where resource_id = 1 and user_id = 2;
 select * from users;
 select * from resources;
 select * from resources_taken;
+select * from rates;
 
 show tables;
 

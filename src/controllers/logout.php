@@ -9,6 +9,7 @@
     
     unset($_SESSION["valid"]);
     unset($_SESSION["username"]);
+    session_destroy();
    
     echo '../../public/login.html';
 ?>
