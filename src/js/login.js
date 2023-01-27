@@ -35,7 +35,7 @@ function loginCall(url) {
                 console.log("response = ", xhr.responseText,  "\nstatus = ", xhr.status);
                 return;
             }
-            
+            console.log(xhr.response);
             window.location.href = xhr.responseText;
         }
     })
