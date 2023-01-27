@@ -23,7 +23,6 @@ function homepageCall(url) {
                 if (cols.indexOf(k) === -1) {
                     // Push all keys to the array
                     cols.push(k);
-                    console.log(k);
                 }
             }
         }
@@ -34,7 +33,7 @@ function homepageCall(url) {
         // Create table row tr element of a table
         var tr = table.insertRow(-1);
             
-        for (var i = 0; i < cols.length; i++) {        
+        for (var i = 0; i < cols.length; i++) {
             // Create the table header th element
             var theader = document.createElement("th");
             theader.innerHTML = cols[i];
@@ -44,7 +43,7 @@ function homepageCall(url) {
         }
             
         // Adding the data to the table
-        for (var i = 0; i < list.length; i++) {       
+        for (var i = 0; i < list.length; i++) {   
             // Create a new row
             trow = table.insertRow(-1);
             for (var j = 0; j < cols.length; j++) {

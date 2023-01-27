@@ -8,6 +8,8 @@ create table users (
 
 create table resources (
 	resource_id serial primary key,
+	title varchar (511) not null,
+	author varchar (63) not null,
 	link varchar (511) unique not null,
 	max_readers int not null,
 	current_readers int default 0,
