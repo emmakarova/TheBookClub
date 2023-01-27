@@ -30,7 +30,7 @@ create table resources_taken (
 create table rates (
 	resource_id bigint unsigned not null,
 	user_id bigint unsigned not null, 
-	rate int not null check (rate >= 1 and rate <= 10),
+	rate int not null check (rate >= 1 and rate <= 5),
 	primary key (resource_id, user_id),
 	constraint fk_resource_rate foreign key (resource_id) references resources(resource_id),
 	constraint fk_user_rate foreign key (user_id) references users(user_id)
