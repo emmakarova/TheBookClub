@@ -1,5 +1,4 @@
 <?php
-
     require_once "./connect.php";
     require_once "../globals/queries.php";
 
@@ -39,5 +38,4 @@
 
     echo '../../public/homepage.html';
     exit();
-
 ?>

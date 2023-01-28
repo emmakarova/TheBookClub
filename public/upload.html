@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Upload a resource</title>
+
+        <script src="../src/js/upload.js"></script>
+        <script src="../src/js/logout.js"></script>
+    </head>
+
+    <body>
+        <h2>Currently reading</h2>
+        <p id="resources"></p> 
+        <form id="upload-form">
+            <label>Link</label>
+            <input type="text" name="link" id="link" required>
+
+            <label>Title</label>
+            <input type="text" name="title" id="title" required>
+
+            <label>Author</label>
+            <input type="text" name="author" id="author" required>
+
+            <label>Max num of readers</label>
+            <input type="number" name="max-readers" id="max-readers" required>
+
+            <label>Max num of reading days</label>
+            <input type="number" name="max-days" id="max-days" required>
+
+            <button type="button" name="upload" class="btn btn-primary" onclick="upload()">Upload</button>
+        </form>
+        <button type="button" name="logout" class="btn btn-primary" onclick="logout()">Log out</button>
+    </body>
+</html>

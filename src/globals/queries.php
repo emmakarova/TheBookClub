@@ -4,6 +4,11 @@
     const PASSWORD_PARAM = 'password';
     const RESOURCE_ID_PARAM = 'resourceId';
     const RATE_PARAM = 'rate';
+    const LINK_PARAM = 'link';
+    const TITLE_PARAM = 'title';
+    const AUTHOR_PARAM = 'author';
+    const MAX_READERS_PARAM = 'maxReaders';
+    const MAX_DAYS_PARAM = 'maxDays';
 
     const GET_USER_PASSWORD = 'SELECT password FROM users WHERE username = :username';
     const GET_USER_USERNAME = 'SELECT username FROM users WHERE username = :username';
@@ -20,4 +25,7 @@
                                    GROUP BY resources.resource_id';
     const RETURN_RESOURCE = 'DELETE FROM resources_taken WHERE resource_id = :resourceId AND user_id = :userId';
     const ADD_RATE = 'INSERT INTO rates(resource_id, user_id, rate) VALUES (:resourceId, :userId, :rate)';
+
+    const UPLOAD_RESOURCE = 'INSERT INTO resources (link, title, author, max_readers, max_reading_days)
+	                         VALUES (:link, :title, :author, :maxReaders, :maxDays)';
 ?>

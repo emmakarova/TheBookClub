@@ -79,7 +79,7 @@ function mypageCall(url) {
 }
 
 const returnResource = (resourceId) => {
-    var url = '../src/controllers/mypageReturnResource.php';
+    var url = '../src/controllers/mypage.php';
     returnResourceCall(url, resourceId);
 }
 
