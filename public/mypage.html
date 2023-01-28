@@ -5,12 +5,16 @@
         <title>My page</title>
 
         <script src="../src/js/mypage.js"></script>
+        <script src="../src/js/navigatin-loader.js"></script>
         <script src="../src/js/logout.js"></script>
+
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     </head>
 
-    <body onload="mypage()">
+    <body onload="mypage(); navigate()">
+        <p id="nav-placeholder"></p>
+
         <h2>Currently reading</h2>
-        <p id="resources"></p> 
-        <button type="button" name="logout" class="btn btn-primary" onclick="logout()">Log out</button>
+        <p id="resources"></p>
     </body>
 </html>
