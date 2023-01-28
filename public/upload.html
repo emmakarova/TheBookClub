@@ -15,23 +15,54 @@
         <p id="nav-placeholder"></p>
 
         <h2>Upload a resource</h2>
-        <form id="upload-form">
-            <label>Link</label>
-            <input type="text" name="link" id="link" required>
 
-            <label>Title</label>
-            <input type="text" name="title" id="title" required>
+        <!-- action="../src/controllers/upload.php" -->
+        <form action="../src/controllers/upload.php" id="upload-form" method="post" enctype="multipart/form-data">
+            <label for="link-btn">Link</label>
+            <input type="radio" id="link-btn" name="resource-type" checked onclick="allowChoosenInput()"/>
+            
+            <label for="file-btn">File</label>
+            <input type="radio" id="file-btn" name="resource-type" onclick="allowChoosenInput()"/>
 
-            <label>Author</label>
-            <input type="text" name="author" id="author" required>
+            <br>
 
-            <label>Max num of readers</label>
-            <input type="number" name="max-readers" id="max-readers" required>
+            <input type="text" name="link" id="link">
+            <input type="file" name="file" id="file" disabled style="display: none;">
 
-            <label>Max num of reading days</label>
-            <input type="number" name="max-days" id="max-days" required>
+            <button type="button" >Upload Image</button>
+          </form>
+          
+        <!-- <form id="upload-form" method="post" enctype="multipart/form-data">
+            <fieldset>
+                <label for="link-btn">Link</label>
+                <input type="radio" id="link-btn" name="resource-type" checked onclick="allowChoosenInput()"/>
+                
+                <label for="file-btn">File</label>
+                <input type="radio" id="file-btn" name="resource-type" onclick="allowChoosenInput()"/>
 
-            <button type="button" name="upload" class="btn btn-primary" onclick="upload()">Upload</button>
-        </form>
+                <br>
+
+                <input type="text" name="link" id="link">
+                <input type="file" name="file" id="file" disabled style="display: none;">
+
+                <br>
+            </fieldset>
+
+            <fieldset>
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" required>
+
+                <label for="author">Author</label>
+                <input type="text" name="author" id="author" required>
+
+                <label for="max-readers">Max num of readers</label>
+                <input type="number" name="max-readers" id="max-readers" required>
+
+                <label for="max-days">Max num of reading days</label>
+                <input type="number" name="max-days" id="max-days" required>
+            </fieldset>
+
+            <button type="button" name="upload-btn" class="btn btn-primary" onclick="upload()">Upload</button>
+        </form> -->
     </body>
 </html>
