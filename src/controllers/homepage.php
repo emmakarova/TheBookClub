@@ -32,7 +32,7 @@
 
         $resource_id = $_POST["resource_id"];
         $user_id = $_SESSION['user_id'];
-     
+        echo $resource_id, $user_id;
         $query->bindParam("resource_id", $resource_id, PDO::PARAM_INT);
         $query->bindParam("user_id", $user_id, PDO::PARAM_INT);
 

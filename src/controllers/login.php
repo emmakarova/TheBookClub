@@ -33,6 +33,7 @@
         http_response_code(403);
         exit('<p class="error">Wrong password!</p>');
     }
+
     $_SESSION['valid'] = true;
     $_SESSION['username'] = $username;
     $_SESSION['user_id'] = $result[0]['user_id'];
