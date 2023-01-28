@@ -5,15 +5,16 @@
         <title>Homepage</title>
 
         <script src="../src/js/homepage.js"></script>
+        <script src="../src/js/navigatin-loader.js"></script>
         <script src="../src/js/logout.js"></script>
+
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     </head>
 
-    <body onload="homepage()">
+    <body onload="homepage(); navigate()">
+        <p id="nav-placeholder"></p>
+
         <h2>Resources to be displayed</h2>
         <p id="resources"></p> 
-        <form id="form">
-            <input type="submit" name="submit" class="btn btn-primary" value="Log out" onclick="logout()">
-        </form>
     </body>
-    
 </html>
