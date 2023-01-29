@@ -9,17 +9,33 @@
 
     session_start();
 
-    if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if ($_SERVER["REQUEST_METHOD"] == "GET" && !$_SERVER["QUERY_STRING"]) { 
         $query = $db->prepare(GET_ALL_RESOURCES);
+        $query->execute();
+
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($result);
+
+        return;
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] == "GET" && $_SERVER["QUERY_STRING"]) {
+        $query = $db->prepare(GET_ALL_RESOURCES_BY_USER);
         if(!$query) {
             http_response_code(500);
             exit('Error preparing the statement.');
         }
+        $user_id = $_SESSION['user_id'];
     
-        $query->execute();
+        $query->bindParam("user_id", $user_id, PDO::PARAM_INT);
+        if (!$query->execute()) {
+            http_response_code(500);
+            exit('<p class="error">Something went wrong!</p>');
+        }
+        
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
-            
         echo json_encode($result);
+        
         return;
     }
 
@@ -32,22 +48,13 @@
 
         $resource_id = $_POST["resource_id"];
         $user_id = $_SESSION['user_id'];
-        echo $resource_id, $user_id;
+
         $query->bindParam("resource_id", $resource_id, PDO::PARAM_INT);
         $query->bindParam("user_id", $user_id, PDO::PARAM_INT);
 
-        // if (!$query->execute()) {
-        //     http_response_code(500);
-        //     exit('<p class="error">Something went wrong!</p>');
-        // }
-
-        try {
-            $query->execute();
-            echo "success";
-        }
-        catch(PDOException $e) {
+        if (!$query->execute()) {
             http_response_code(500);
-            echo "The resource is already taken from this user!";
+            exit('<p class="error">Something went wrong!</p>');
         }
     }
 ?>

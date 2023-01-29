@@ -6,10 +6,10 @@
         http_response_code(400);
         exit('<p class="error">Unexpected call!</p>');
     }
-    echo $_SESSION[0];
+    // echo $_SESSION[0];
     unset($_SESSION["valid"]);
     unset($_SESSION["username"]);
     session_destroy();
    
-    // echo '../../public/login.html';
+    echo '../../public/login.html';
 ?>

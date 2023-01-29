@@ -15,7 +15,11 @@
     const INSERT_USER = 'INSERT INTO users (username, password) VALUES (:username, :password)';
     const INSERT_RESOURCES_TAKEN = 'INSERT INTO resources_taken (resource_id, user_id) VALUES (:resource_id, :user_id)';
 
-    const GET_ALL_RESOURCES = 'SELECT resource_id, title, author, times_read, max_reading_days FROM resources';
+    const GET_ALL_RESOURCES = 'SELECT * FROM resources';
+    const GET_ALL_RESOURCES_BY_USER = 'SELECT * 
+                                       FROM resources
+                                       LEFT JOIN resources_taken rt on resources.resource_id = rt.resource_id 
+                                       WHERE rt.user_id = :user_id';
 
     const GET_USER_ID = 'SELECT user_id FROM users WHERE username = :username';
     const GET_CURRENTLY_READING = 'SELECT resources.resource_id, title, author, date(resources_taken.date_to_return) as date, AVG(rate) as rate
