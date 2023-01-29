@@ -10,23 +10,7 @@
         exit('<p class="error">Unathorized!</p>');
     }
 
-    // get user_id
-    $username = $_SESSION["username"];
-
-    $getUserIdquery = $db->prepare(GET_USER_ID);
-    if(!$getUserIdquery) {
-        http_response_code(500);
-        exit('Error preparing the statement.');
-    }
-
-    $getUserIdquery->bindParam(USERNAME_PARAM, $username, PDO::PARAM_STR);
-    if (!$getUserIdquery->execute()) {
-        http_response_code(500);
-        exit('<p class="error">Something went wrong!</p>');
-    }
-
-    $result = $getUserIdquery->fetchAll();
-    $userId = $result[0]['user_id'];
+    $userId = $_SESSION["user_id"];
 
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
         return getCurrentlyReading($db, $userId);

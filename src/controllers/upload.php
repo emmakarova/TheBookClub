@@ -15,11 +15,14 @@
         exit('<p class="error">Unexpected call!</p>');
     }
 
+    $userId = $_SESSION["user_id"];
+
+    // upload the resource
     $link = $_POST['link'];
     $title = $_POST['title'];
-    $author = $_POST["author"];
-    $maxReaders = $_POST["max-readers"];
-    $maxDays = $_POST["max-days"];
+    $author = $_POST['author'];
+    $maxReaders = $_POST['max-readers'];
+    $maxDays = $_POST['max-days'];
 
     $insertQuery = $db->prepare(UPLOAD_RESOURCE);
     if (!$insertQuery) {
@@ -27,6 +30,7 @@
         exit("Error preparing the statement.");
     }
 
+    $insertQuery->bindParam(USER_ID_PARAM, $userId, PDO::PARAM_INT);
     $insertQuery->bindParam(LINK_PARAM, $link, PDO::PARAM_STR);
     $insertQuery->bindParam(TITLE_PARAM, $title, PDO::PARAM_STR);
     $insertQuery->bindParam(AUTHOR_PARAM, $author, PDO::PARAM_STR);
