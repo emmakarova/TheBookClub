@@ -35,7 +35,8 @@
 
     $_SESSION['valid'] = true;
     $_SESSION['username'] = $username;
-
+    $_SESSION['user_id'] = $result[0]['user_id'];
+    
     echo '../../public/homepage.html';
     exit();
 ?>
