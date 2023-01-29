@@ -23,14 +23,14 @@ function loginCall(url) {
     
     // send request
     xhr.send(d);
-    
+    console.log("HERE");
     // listen for `load` event
     xhr.onload = () => {
         if (xhr.status != 200) {
             console.log("response = ", xhr.responseText,  "\nstatus = ", xhr.status);
             return;
         }
-        
+        console.log("response = ", xhr.responseText,  "\nstatus = ", xhr.status);
         window.location.href = xhr.responseText;
     }
 }
