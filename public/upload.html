@@ -15,37 +15,16 @@
         <p id="nav-placeholder"></p>
 
         <h2>Upload a resource</h2>
-
-        <!-- action="../src/controllers/upload.php" -->
-        <form action="../src/controllers/upload.php" id="upload-form" method="post" enctype="multipart/form-data">
-            <label for="link-btn">Link</label>
-            <input type="radio" id="link-btn" name="resource-type" checked onclick="allowChoosenInput()"/>
-            
-            <label for="file-btn">File</label>
-            <input type="radio" id="file-btn" name="resource-type" onclick="allowChoosenInput()"/>
-
-            <br>
-
-            <input type="text" name="link" id="link">
-            <input type="file" name="file" id="file" disabled style="display: none;">
-
-            <button type="button" >Upload Image</button>
-          </form>
-          
-        <!-- <form id="upload-form" method="post" enctype="multipart/form-data">
+        <form id="upload-form" method="post" enctype="multipart/form-data">
             <fieldset>
                 <label for="link-btn">Link</label>
                 <input type="radio" id="link-btn" name="resource-type" checked onclick="allowChoosenInput()"/>
                 
                 <label for="file-btn">File</label>
                 <input type="radio" id="file-btn" name="resource-type" onclick="allowChoosenInput()"/>
-
                 <br>
-
                 <input type="text" name="link" id="link">
-                <input type="file" name="file" id="file" disabled style="display: none;">
-
-                <br>
+                <input id="file" type="file" name="fileupload" style="display: none;"/>
             </fieldset>
 
             <fieldset>
@@ -62,7 +41,7 @@
                 <input type="number" name="max-days" id="max-days" required>
             </fieldset>
 
-            <button type="button" name="upload-btn" class="btn btn-primary" onclick="upload()">Upload</button>
-        </form> -->
+            <button type="button" name="submit" onclick="uploadResource()">Upload</button>
+          </form>
     </body>
 </html>

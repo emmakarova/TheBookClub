@@ -26,6 +26,6 @@
     const RETURN_RESOURCE = 'DELETE FROM resources_taken WHERE resource_id = :resourceId AND user_id = :userId';
     const ADD_RATE = 'INSERT INTO rates(resource_id, user_id, rate) VALUES (:resourceId, :userId, :rate)';
 
-    const UPLOAD_RESOURCE = 'INSERT INTO resources (link, title, author, max_readers, max_reading_days)
-	                         VALUES (:link, :title, :author, :maxReaders, :maxDays)';
+    const UPLOAD_RESOURCE = 'INSERT INTO resources (uploaded_by, link, title, author, max_readers, max_reading_days)
+	                         VALUES (:userId, :link, :title, :author, :maxReaders, :maxDays)';
 ?>

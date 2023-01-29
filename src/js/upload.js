@@ -1,32 +1,39 @@
-function upload() {
+const uploadResource = () => {
     var url = '../src/controllers/upload.php';
-    uploadCall(url);
+    uploadResourceCall(url);
 }
 
-function uploadCall(url) {
+function uploadResourceCall(url) {
     const xhr = new XMLHttpRequest();
-    xhr.open('FILES', url);
+    xhr.open('POST', url);
     
-    // const form = document.querySelector('#upload-form');
-    // let data = new FormData(form);
-    // const values = [...data.entries()];
+    const form = document.querySelector('#upload-form');
+    let data = new FormData(form);
+    const values = [...data.entries()];
+    
+    var d = "";
 
-    // var d = "";
+    // form link path and upload file (if existent)
+    var fileBtn = document.getElementById("file-btn");
+    if (fileBtn.checked) {
+        if (!uploadFile(url)) {
+            return;
+        }
+        d = "link=uploadedFiles/" + file.files[0].name;
+    } else {
+        d = "link=" + values[1][1];
+    }
 
-    // // skip resource-type=on and link/file
-    // for (let i = 2; i < values.length; i++) {
-    //     d += '&' + values[i][0] + '=' + values[i][1];
-    // }
-    // d = d.substring(1);
+    // skip resource-type=on, and link/fileupload
+    for (let i = 2; i < values.length; i++) {
+        d += '&' + values[i][0] + '=' + values[i][1];
+    }
 
-    // console.log(d);
-
-    // // set headers
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     
     // send request
-    xhr.send();
+    xhr.send(d);
     
     // listen for `load` event
     xhr.onload = () => {
@@ -35,10 +42,23 @@ function uploadCall(url) {
             return;
         }
 
-        console.log("resp = ", xhr.responseText);
-
-        // form.reset();
+        form.reset();
     }
+}
+
+async function uploadFile() {
+    let formData = new FormData();           
+    formData.append("file", file.files[0]);
+
+    let response = await fetch('../src/controllers/uploadFile.php', {
+        method: "POST", 
+        body: formData
+    });    
+    if (!response.ok) {
+        console.log("response = ", response.text(), "\nstatus = ", response.status);
+        return false;
+    }
+    return true;
 }
 
 const allowChoosenInput = () => {
