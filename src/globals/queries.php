@@ -2,6 +2,7 @@
     const USER_ID_PARAM = 'userId';
     const USERNAME_PARAM = 'username';
     const PASSWORD_PARAM = 'password';
+    const NAMES_PARAM = 'names';
     const RESOURCE_ID_PARAM = 'resourceId';
     const RATE_PARAM = 'rate';
     const LINK_PARAM = 'link';
@@ -12,7 +13,7 @@
 
     const GET_USER_PASSWORD = 'SELECT password FROM users WHERE username = :username';
     const GET_USER_USERNAME = 'SELECT username FROM users WHERE username = :username';
-    const INSERT_USER = 'INSERT INTO users (username, password) VALUES (:username, :password)';
+    const INSERT_USER = 'INSERT INTO users (username, password, names) VALUES (:username, :password, :names)';
 
     const GET_ALL_RESOURCES = 'SELECT title, author, times_read, max_reading_days FROM resources';
 
