@@ -24,7 +24,6 @@
                                        LEFT JOIN resources_taken rt on resources.resource_id = rt.resource_id 
                                        WHERE rt.user_id = :user_id';
 
-    const GET_USER_ID = 'SELECT user_id FROM users WHERE username = :username';
     const GET_CURRENTLY_READING = 'SELECT resources.resource_id, title, author, date(resources_taken.date_to_return) as date, AVG(rate) as rate
                                    FROM resources 
                                    JOIN resources_taken ON resources.resource_id = resources_taken.resource_id
@@ -36,4 +35,9 @@
 
     const UPLOAD_RESOURCE = 'INSERT INTO resources (uploaded_by, link, title, author, max_readers, max_reading_days)
 	                         VALUES (:userId, :link, :title, :author, :maxReaders, :maxDays)';
+
+    const GET_PROFILE_INFO = 'SELECT username, names, admin_rights FROM users WHERE user_id = :userId';
+    const GET_MY_RESOURCES = 'SELECT resource_id, title, author, link, times_read FROM resources
+                              WHERE uploaded_by = :userId';
+    const DELETE_RESOURCE = 'DELETE FROM resources WHERE resource_id = :resourceId';
 ?>
