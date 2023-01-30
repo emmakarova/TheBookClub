@@ -84,8 +84,6 @@ const returnResource = (resourceId) => {
 }
 
 function returnResourceCall(url, resourceId) {
-    console.log("resource_id = ", resourceId);
-
     let rate;
     let ratePrompt = prompt("Please rate the resource (1-5):", "5");
     if (ratePrompt == null || ratePrompt == "") {

@@ -10,6 +10,7 @@
     const AUTHOR_PARAM = 'author';
     const MAX_READERS_PARAM = 'maxReaders';
     const MAX_DAYS_PARAM = 'maxDays';
+    const NOTIFICATION_ID_PARAM = 'notificationId';
 
     const GET_USER_PASSWORD = 'SELECT user_id,password FROM users WHERE username = :username';
     const GET_USER_USERNAME = 'SELECT username FROM users WHERE username = :username';
@@ -40,4 +41,8 @@
     const GET_MY_RESOURCES = 'SELECT resource_id, title, author, link, times_read FROM resources
                               WHERE uploaded_by = :userId';
     const DELETE_RESOURCE = 'DELETE FROM resources WHERE resource_id = :resourceId';
+
+    const GET_NOTIFICATIONS = 'SELECT notification_id, date(received_at) as received_at, notification, seen FROM notifications
+                               WHERE user_id = :userId';
+    const MARK_NOTIFICATION_AS_READ = 'UPDATE notifications SET seen = true WHERE notification_id = :notificationId';
 ?>
