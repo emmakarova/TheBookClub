@@ -42,13 +42,13 @@ const homepage = async () => {
         var buttonTag = '';
 
         if (isAlreadyTaken(allResources[i],userResources)) {
-            buttonTag = '<button type=\"button\" disabled=true>Already Taken</button>';
+            buttonTag = '<button class="btn" type=\"button\" disabled=true>Already Taken</button>';
         }
         else if (allResources[i].current_readers >= allResources[i].max_readers) {
-            buttonTag = '<button type=\"button\" disabled=true>Unavailable</button>';
+            buttonTag = '<button class="btn" type=\"button\" disabled=true>Unavailable</button>';
         }
         else {
-            buttonTag = '<button type=\"button\" onclick=\"take(' + allResources[i]['resource_id'] + ',' + (i+1) + ')\">Take</button>';
+            buttonTag = '<button class="btn" type=\"button\" onclick=\"take(' + allResources[i]['resource_id'] + ',' + (i+1) + ')\">Take</button>';
         }
         
         insertResourceInTable(cols, allResources[i], table, buttonTag);
