@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Homepage</title>
+
+        <script src="../src/js/adminhomepage.js"></script>
+        <script src="../src/js/navigation-loader.js"></script>
+        <script src="../src/js/logout.js"></script>
+        <script src="../src/js/searchResource.js"></script>
+
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    </head>
+
+    <body onload="homepage(); navigateAdmin()">
+        <p id="nav-placeholder"></p>
+
+        <h2>Resources to be displayed Admin</h2>
+            <form>
+              <input type="text" id="search" placeholder="Search.." onkeyup="searchResource()"name="search">
+            </form>
+        <p id="resources"></p> 
+    </body>
+</html>

@@ -11,6 +11,11 @@
     $username = $_POST['username'];
     $password = $_POST['password'];
     $confirm_password = $_POST["confirm_password"];
+    $admin_rights = false;
+
+    if ($_POST['admin_rights']) {
+        $admin_rights = true;
+    }
 
     $password_hash = password_hash($password, PASSWORD_BCRYPT);
 
@@ -45,12 +50,19 @@
     $insertQuery->bindParam(USERNAME_PARAM, $username, PDO::PARAM_STR);
     $insertQuery->bindParam(PASSWORD_PARAM, $password_hash, PDO::PARAM_STR);
     $insertQuery->bindParam(NAMES_PARAM, $names, PDO::PARAM_STR);
+    $insertQuery->bindParam(ADMIN_RIGHTS_PARAM, $admin_rights, PDO::PARAM_INT);
 
     if (!$insertQuery->execute()) {
         http_response_code(500);
         exit('<p class="error">Something went wrong!</p>');
     }
 
-    echo '../../public/login.html';
+    if ($admin_rights) {
+        echo "../../public/adminHomepage.html";
+    }
+    else {
+        echo '../../public/login.html';
+    }
+
     exit();
 ?>

@@ -37,6 +37,14 @@
     $_SESSION['username'] = $username;
     $_SESSION['user_id'] = $result[0]['user_id'];
     
-    echo '../../public/homepage.html';
+    if ($result[0]['admin_rights']) {
+        $_SESSION['admin_rights'] = true;
+        echo '../../public/adminHomepage.html';
+    }
+    else {
+        $_SESSION['admin_rights'] = false;
+        echo '../../public/homepage.html';
+    }
+
     exit();
 ?>
