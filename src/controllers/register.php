@@ -13,7 +13,7 @@
     $confirm_password = $_POST["confirm_password"];
     $admin_rights = false;
 
-    if ($_POST['admin_rights']) {
+    if (isset($_POST['admin_rights']) && $_POST['admin_rights']) {
         $admin_rights = true;
     }
 
