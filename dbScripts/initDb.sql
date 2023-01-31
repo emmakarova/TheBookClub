@@ -43,7 +43,7 @@ create table rates (
 create table notifications (
 	notification_id serial primary key,
 	user_id bigint unsigned not null,
-	notification varchar(1023) not null,
+	message varchar(1023) not null,
 	seen bool not null default false,
 	received_at timestamp not null default now(),
 	constraint fk_notified_user foreign key (user_id) references users(user_id) on delete cascade
@@ -94,7 +94,7 @@ for each row
 create trigger notify_for_deleted_resource
 before delete on resources
 for each row
-	insert into notifications(user_id, notification)
+	insert into notifications(user_id, message)
 	(select user_id, concat('The resource "', old.title, '" you have been reading is deleted.') from resources_taken
 	 where resources_taken.resource_id = old.resource_id);
 

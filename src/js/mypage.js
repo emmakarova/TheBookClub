@@ -58,7 +58,7 @@ function myResourcesCall(url) {
         console.log(xhr.response);
         var list = xhr.response;
 
-        if (list.length == 0) {
+        if (list == null) {
             return;
         }
 

@@ -7,7 +7,8 @@
         exit('<p class="error">Unexpected call!</p>');
     }
 
-    $names = $_POST['names'];
+    $firstName = $_POST['first-name'];
+    $lastName = $_POST['last-name'];
     $username = $_POST['username'];
     $password = $_POST['password'];
     $confirm_password = $_POST["confirm_password"];
@@ -47,6 +48,8 @@
         exit("Error preparing the statement.");
     }
 
+    $names = $firstName . " " . $lastName;
+    
     $insertQuery->bindParam(USERNAME_PARAM, $username, PDO::PARAM_STR);
     $insertQuery->bindParam(PASSWORD_PARAM, $password_hash, PDO::PARAM_STR);
     $insertQuery->bindParam(NAMES_PARAM, $names, PDO::PARAM_STR);
