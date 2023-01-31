@@ -1,46 +1,9 @@
-const mypage = () => {
-    var url = '../src/controllers/mypage.php';
-    myProfileCall(url+"?user");
-    myResourcesCall(url);
+const myreading = () => {
+    var url = '../src/controllers/myreading.php';
+    myreadingCall(url);
 }
 
-function myProfileCall(url) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', url);
-    xhr.responseType = "json";
-
-    // send request
-    xhr.send();
-
-    xhr.onload = () => {
-        if (xhr.status != 200) {
-            console.log("response = ", xhr.response, "\nstatus = ", xhr.status);
-            return;
-        }
-
-        var list = xhr.response;
-
-        var names = document.createElement("p");
-        names.innerHTML = "Names: " + list[0]["names"];
-
-        var username = document.createElement("p");
-        username.innerHTML = "Username: " + list[0]["username"];
-
-        var profileType = document.createElement("p");
-        profileType.innerHTML = "Profile type: ";
-        if (list[0]["admin_rights"]) {
-            profileType.innerHTML += "admin";
-        } else {
-            profileType.innerHTML += "user";
-        }
-
-        var myProfile = document.getElementById("myProfile");
-        // myProfile.innerHTML = "";
-        myProfile.append(names, username, profileType);
-    }
-}
-
-function myResourcesCall(url) {
+function myreadingCall(url) {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', url);
     xhr.responseType = "json";
@@ -90,7 +53,7 @@ function myResourcesCall(url) {
 
         // create column for 'release resource' button
         var theader = document.createElement("th");
-        theader.innerHTML = "Delete the resource";
+        theader.innerHTML = "Return the resource";
         tr.appendChild(theader);
             
         // Adding the data to the table
@@ -103,28 +66,37 @@ function myResourcesCall(url) {
                 // Inserting the cell at particular place
                 cell.innerHTML = list[i][cols[j]];
             }
+
             var cell = trow.insertCell(-1);
-            cell.innerHTML = '<input type="submit" name="deleteResource" class="btn btn-primary" ' +
-                'value="Delete" onclick="deleteResource(\'' + list[i]["resource_id"] + '\')">';
+            cell.innerHTML = '<input type="submit" name="returnResource" class="btn btn-primary" ' +
+                'value="Return" onclick="returnResource(\'' + list[i]["resource_id"] + '\')">';
         }
         
-        var myResources = document.getElementById("resources");
-        myResources.appendChild(table);
+        var el = document.getElementById("resources");
+        el.innerHTML = "";
+        el.appendChild(table);
     }
 }
 
-const deleteResource = (resourceId) => {
-    var url = '../src/controllers/mypage.php';
-    deleteResourceCall(url, resourceId);
+const returnResource = (resourceId) => {
+    var url = '../src/controllers/myreading.php';
+    returnResourceCall(url, resourceId);
 }
 
-function deleteResourceCall(url, resourceId) {
-    console.log("resource_id = ", resourceId);
+function returnResourceCall(url, resourceId) {
+    let rate;
+    let ratePrompt = prompt("Please rate the resource (1-5):", "5");
+    if (ratePrompt == null || ratePrompt == "") {
+        console.log("User cancelled the prompt.");
+        return;
+    } else {
+        rate = ratePrompt;
+    }
    
     const xhr = new XMLHttpRequest();
     xhr.open('POST', url);
         
-    var d = 'resource_id=' + resourceId;
+    var d = 'resource_id=' + resourceId + '&rate=' + rate;
 
     // set headers
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

@@ -10,12 +10,14 @@
     const AUTHOR_PARAM = 'author';
     const MAX_READERS_PARAM = 'maxReaders';
     const MAX_DAYS_PARAM = 'maxDays';
+    const NOTIFICATION_ID_PARAM = 'notificationId';
+    const ADMIN_RIGHTS_PARAM = 'adminRights';
 
-    const GET_USER_PASSWORD = 'SELECT user_id,password FROM users WHERE username = :username';
+    const GET_USER_PASSWORD = 'SELECT admin_rights, user_id, password FROM users WHERE username = :username';
     const GET_USER_USERNAME = 'SELECT username FROM users WHERE username = :username';
 
     const INSERT_RESOURCES_TAKEN = 'INSERT INTO resources_taken (resource_id, user_id) VALUES (:resource_id, :user_id)';
-    const INSERT_USER = 'INSERT INTO users (username, password, names) VALUES (:username, :password, :names)';
+    const INSERT_USER = 'INSERT INTO users (username, password, names, admin_rights) VALUES (:username, :password, :names, :adminRights)';
 
 
     const GET_ALL_RESOURCES = 'SELECT * FROM resources';
@@ -24,7 +26,6 @@
                                        LEFT JOIN resources_taken rt on resources.resource_id = rt.resource_id 
                                        WHERE rt.user_id = :user_id';
 
-    const GET_USER_ID = 'SELECT user_id FROM users WHERE username = :username';
     const GET_CURRENTLY_READING = 'SELECT resources.resource_id, title, author, date(resources_taken.date_to_return) as date, AVG(rate) as rate
                                    FROM resources 
                                    JOIN resources_taken ON resources.resource_id = resources_taken.resource_id
@@ -36,4 +37,13 @@
 
     const UPLOAD_RESOURCE = 'INSERT INTO resources (uploaded_by, link, title, author, max_readers, max_reading_days)
 	                         VALUES (:userId, :link, :title, :author, :maxReaders, :maxDays)';
+
+    const GET_PROFILE_INFO = 'SELECT username, names, admin_rights FROM users WHERE user_id = :userId';
+    const GET_MY_RESOURCES = 'SELECT resource_id, title, author, link, times_read FROM resources
+                              WHERE uploaded_by = :userId';
+    const DELETE_RESOURCE = 'DELETE FROM resources WHERE resource_id = :resourceId';
+
+    const GET_NOTIFICATIONS = 'SELECT notification_id, date(received_at) as received_at, notification, seen FROM notifications
+                               WHERE user_id = :userId';
+    const MARK_NOTIFICATION_AS_READ = 'UPDATE notifications SET seen = true WHERE notification_id = :notificationId';
 ?>

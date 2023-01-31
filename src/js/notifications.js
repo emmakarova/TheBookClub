@@ -1,46 +1,9 @@
-const mypage = () => {
-    var url = '../src/controllers/mypage.php';
-    myProfileCall(url+"?user");
-    myResourcesCall(url);
+const notifications = () => {
+    var url = '../src/controllers/notifications.php';
+    notificationsCall(url);
 }
 
-function myProfileCall(url) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', url);
-    xhr.responseType = "json";
-
-    // send request
-    xhr.send();
-
-    xhr.onload = () => {
-        if (xhr.status != 200) {
-            console.log("response = ", xhr.response, "\nstatus = ", xhr.status);
-            return;
-        }
-
-        var list = xhr.response;
-
-        var names = document.createElement("p");
-        names.innerHTML = "Names: " + list[0]["names"];
-
-        var username = document.createElement("p");
-        username.innerHTML = "Username: " + list[0]["username"];
-
-        var profileType = document.createElement("p");
-        profileType.innerHTML = "Profile type: ";
-        if (list[0]["admin_rights"]) {
-            profileType.innerHTML += "admin";
-        } else {
-            profileType.innerHTML += "user";
-        }
-
-        var myProfile = document.getElementById("myProfile");
-        // myProfile.innerHTML = "";
-        myProfile.append(names, username, profileType);
-    }
-}
-
-function myResourcesCall(url) {
+function notificationsCall(url) {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', url);
     xhr.responseType = "json";
@@ -55,7 +18,6 @@ function myResourcesCall(url) {
             return;
         }
 
-        console.log(xhr.response);
         var list = xhr.response;
 
         if (list == null) {
@@ -66,7 +28,7 @@ function myResourcesCall(url) {
                 
         for (var i = 0; i < list.length; i++) {
             for (var k in list[i]) {
-                if (cols.indexOf(k) === -1 && k != "resource_id") {
+                if (cols.indexOf(k) === -1) {
                     // Push all keys to the array
                     cols.push(k);
                 }
@@ -88,43 +50,60 @@ function myResourcesCall(url) {
             tr.appendChild(theader);
         }
 
-        // create column for 'release resource' button
-        var theader = document.createElement("th");
-        theader.innerHTML = "Delete the resource";
-        tr.appendChild(theader);
+        // // create column for 'release resource' button
+        // var theader = document.createElement("th");
+        // theader.innerHTML = "Return the resource";
+        // tr.appendChild(theader);
             
         // Adding the data to the table
         for (var i = 0; i < list.length; i++) {       
             // Create a new row
             trow = table.insertRow(-1);
-            for (var j = 0; j < cols.length; j++) {
+
+            // insert id of this user's notifications
+            var cell = trow.insertCell(-1);
+            cell.innerHTML = list[i][0];
+
+            // insert received_at and notification
+            for (var j = 1; j < cols.length - 1; j++) {
                 var cell = trow.insertCell(-1);
                     
                 // Inserting the cell at particular place
                 cell.innerHTML = list[i][cols[j]];
             }
+
+            // add Mark as read button
             var cell = trow.insertCell(-1);
-            cell.innerHTML = '<input type="submit" name="deleteResource" class="btn btn-primary" ' +
-                'value="Delete" onclick="deleteResource(\'' + list[i]["resource_id"] + '\')">';
+            var id = "readBtn" + i;
+            if (list[i]["seen"]) {
+                cell.innerHTML = '<input type="submit" id="' + id + '" name="markAsRead" class="btn btn-primary" ' +
+                    'value="Read" disabled=true">';
+            } else {
+                cell.innerHTML = '<input type="submit" id="' + id + '" name="markAsRead" id class="btn btn-primary" ' +
+                    'value="Mark as read" onclick="markAsRead(\'' + list[i]["notification_id"] + '\', \'' + id + '\')">';
+                console.log(cell.innerHTML);
+            }
         }
         
-        var myResources = document.getElementById("resources");
-        myResources.appendChild(table);
+        var el = document.getElementById("notifications");
+        el.innerHTML = "";
+        el.appendChild(table);
     }
 }
 
-const deleteResource = (resourceId) => {
-    var url = '../src/controllers/mypage.php';
-    deleteResourceCall(url, resourceId);
+const markAsRead = (notificationId, btnId) => {
+    var url = '../src/controllers/notifications.php';
+    markAsReadCall(url, notificationId, btnId);
 }
 
-function deleteResourceCall(url, resourceId) {
-    console.log("resource_id = ", resourceId);
+function markAsReadCall(url, notificationId, btnId) {
+    console.log("notificationId = ", notificationId, btnId);
    
     const xhr = new XMLHttpRequest();
     xhr.open('POST', url);
         
-    var d = 'resource_id=' + resourceId;
+    var d = 'notification_id=' + notificationId;
+    console.log("d = ", d);
 
     // set headers
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -140,6 +119,10 @@ function deleteResourceCall(url, resourceId) {
             return;
         }
         
+        var readBtn = document.getElementById(btnId);
+        readBtn.disabled = true;
+        readBtn.innerHTML = "Read";
+
         location.reload();
     }
 }
