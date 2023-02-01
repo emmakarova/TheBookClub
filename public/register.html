@@ -5,29 +5,32 @@
         <title>Sign Up</title>
 
         <script src="../src/js/register.js"></script>
+        <link rel="stylesheet" href="css/register.css">
     </head>
 
     <body>
-        <h2>Register</h2>
-        <form id="register-form" method="post">
-            <label>First name</label>
-            <input type="text" name="first-name" id="first-name" required>
+        <main>
+            <h2 class="sign" align="center">Register</h2>
+            <form id="register-form" method="post">
+                <!-- <label>First name</label> -->
+                <input type="text" name="first-name" id="first-name" placeholder="First name" required>
 
-            <label>Last name</label>
-            <input type="text" name="last-name" id="last-name" required>
+                <!-- <label>Last name</label> -->
+                <input type="text" name="last-name" id="last-name" placeholder="Last name" required>
 
-            <label>Username</label>
-            <input type="text" name="username" id="username" required>
+                <!-- <label>Username</label> -->
+                <input type="text" name="username" id="username" placeholder="Username" required>
+                        
+                <!-- <label>Password</label> -->
+                <input type="password" name="password" id="password" placeholder="Password" required>
                     
-            <label>Password</label>
-            <input type="password" name="password" id="password" required>
-                
-            <label>Confirm Password</label>
-            <input type="password" name="confirm_password" id="confirm_password" required>
-                  
-            <button type="button" name="submit" class="btn btn-primary" onclick="register()">Submit</button>
-  
-            <p>Already have an account? <a href="./login.html">Login here</a>.</p>
-        </form>
+                <!-- <label>Confirm Password</label> -->
+                <input type="password" name="confirm_password" id="confirm-password" placeholder="Confirm password" required>
+                    
+                <button type="button" name="submit" class="btn" onclick="register()">Submit</button>
+    
+                <p class="login" align="center">Already have an account? <a href="./login.html">Login here</a>.</p>
+            </form>
+        </main>
     </body>
 </html>
