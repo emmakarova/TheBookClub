@@ -4,7 +4,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         http_response_code(400);
-        exit('<p class="error">Unexpected call!</p>');
+        exit('<p class="error">Unsuccessful login! Try again!</p>');
     }
 
     $firstName = $_POST['first-name'];
@@ -23,13 +23,13 @@
     $query = $db->prepare(GET_USER_USERNAME);
     if (!$query) {
         http_response_code(500);
-        exit("Error preparing the statement.");
+        exit('<p class="error">Unsuccessful login! Try again!</p>');
     }
 
     $query->bindParam(USERNAME_PARAM, $username, PDO::PARAM_STR);
     if (!$query->execute()) {
         http_response_code(500);
-        exit('<p class="error">Something went wrong!</p>');
+        exit('<p class="error">Unsuccessful login! Try again!</p>');
     }
 
     if ($query->rowCount() > 0) {
@@ -45,7 +45,7 @@
     $insertQuery = $db->prepare(INSERT_USER);
     if (!$insertQuery) {
         http_response_code(500);
-        exit("Error preparing the statement.");
+        exit('<p class="error">Unsuccessful login! Try again!</p>');
     }
 
     $names = $firstName . " " . $lastName;
@@ -57,7 +57,7 @@
 
     if (!$insertQuery->execute()) {
         http_response_code(500);
-        exit('<p class="error">Something went wrong!</p>');
+        exit('<p class="error">Unsuccessful login! Try again!</p>');
     }
 
     if ($admin_rights) {

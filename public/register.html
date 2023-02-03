@@ -15,15 +15,17 @@
 
             <label>Last name</label>
             <input type="text" name="last-name" id="last-name" required>
-
+            
             <label>Username</label>
             <input type="text" name="username" id="username" required>
+            <p class="error" id="username-error"></p>
                     
             <label>Password</label>
             <input type="password" name="password" id="password" required>
                 
             <label>Confirm Password</label>
             <input type="password" name="confirm_password" id="confirm_password" required>
+            <p class="error" id="password-error"></p>
                   
             <button type="button" name="submit" class="btn btn-primary" onclick="register()">Submit</button>
   

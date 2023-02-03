@@ -3,6 +3,17 @@ const login = () => {
     loginCall(url);
 }
 
+// TODO: Fix later?
+// let loginForm = document.getElementById("login-form");
+// if (loginForm) {
+//     console.log("-----");
+//     loginForm.addEventListener("submit", function (e) {
+//         if (e.key === 'Enter') {
+//             login();
+//         }
+//     });
+// }
+
 function loginCall(url) {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', url);
@@ -23,14 +34,26 @@ function loginCall(url) {
     
     // send request
     xhr.send(d);
-    console.log("HERE");
+
     // listen for `load` event
     xhr.onload = () => {
-        if (xhr.status != 200) {
-            console.log("response = ", xhr.responseText,  "\nstatus = ", xhr.status);
+        if (xhr.status == 405) {
+            var usernameErrors = document.getElementById("username-error");
+            usernameErrors.innerHTML = xhr.responseText;
+            var passwordErrors = document.getElementById("password-error");
+            passwordErrors.innerHTML = "";
             return;
         }
-        console.log("response = ", xhr.responseText,  "\nstatus = ", xhr.status);
+
+        // + == 403
+        if (xhr.status != 200) {
+            var usernameErrors = document.getElementById("username-error");
+            usernameErrors.innerHTML = "";
+            var passwordErrors = document.getElementById("password-error");
+            passwordErrors.innerHTML = xhr.responseText;
+            return;
+        }      
+
         window.location.href = xhr.responseText;
     }
 }

@@ -1,7 +1,23 @@
 const mypage = () => {
     var url = '../src/controllers/mypage.php';
+    showSuccessMessage();
     myProfileCall(url+"?user");
     myResourcesCall(url);
+}
+
+function showSuccessMessage() {
+    var success = document.getElementById("success-message");
+    if (!success) {
+        return;
+    }
+    console.log("------", success.innerHTML);
+    console.log(success.style.display);
+    var smth = success.style.display;
+    if (success.style.display == "block") {
+        setTimeout(() => {
+            success.style.display == "none";
+        }, 5000);
+    }
 }
 
 function myProfileCall(url) {
@@ -139,7 +155,18 @@ function deleteResourceCall(url, resourceId) {
             console.log("response = ", xhr.responseText,  "\nstatus = ", xhr.status);
             return;
         }
-        
+
+        var success = document.createElement("p");
+        success.innerHTML = xhr.responseText;
+        success.setAttribute("id", "success-message");
+        success.style.display = "block";
+        var smth = success.style.display;
+        console.log("########", success.style.display);
+
+        // const body = document.body;
+        console.log(document.body.children);
+        document.body.insertBefore(success, document.body.children[1]);
+
         location.reload();
     }
 }
