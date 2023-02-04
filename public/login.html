@@ -12,11 +12,13 @@
         <form id="login-form" method="post">
             <label>Username</label>
             <input type="text" name="username" id="username" required>
+            <p class="error" id="username-error"></p>
                       
             <label>Password</label>
             <input type="password" name="password" id="password" required>
+            <p class="error" id="password-error"></p>
                   
-            <button type="button" name="submit" class="btn btn-primary" onclick="login()">Submit</button>
+            <button type="button" name="submit" id="login-btn" class="btn btn-primary" onclick="login()">Submit</button>
   
             <p>Don't have an account? <a href="./register.html">Register here</a>.</p>
         </form>

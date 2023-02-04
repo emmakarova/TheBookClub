@@ -37,10 +37,16 @@ function uploadResourceCall(url) {
     
     // listen for `load` event
     xhr.onload = () => {
+        var uploadErrors = document.getElementById("upload-error");
         if (xhr.status != 200) {
-            console.log("response = ", xhr.responseText, "\nstatus = ", xhr.status);
+            uploadErrors.innerHTML = xhr.responseText;
             return;
         }
+
+        uploadErrors.innerHTML = "";
+        var success = document.getElementById("success-message");
+        success.innerHTML = xhr.responseText;
+        $('#success-message').show(1).delay(5000).hide(1);
 
         form.reset();
     }

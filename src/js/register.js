@@ -26,8 +26,20 @@ function registerCall(url){
     
     // listen for `load` event
     xhr.onload = () => {
+        if (xhr.status == 409) {
+            var usernameErrors = document.getElementById("username-error");
+            usernameErrors.innerHTML = xhr.responseText;
+            var passwordErrors = document.getElementById("password-error");
+            passwordErrors.innerHTML = "";
+            return;
+        }
+
+        // + == 403
         if (xhr.status != 200) {
-            console.log("response = ", xhr.responseText, "\nstatus = ", xhr.status);
+            var usernameErrors = document.getElementById("username-error");
+            usernameErrors.innerHTML = "";
+            var passwordErrors = document.getElementById("password-error");
+            passwordErrors.innerHTML = xhr.responseText;
             return;
         }
 
