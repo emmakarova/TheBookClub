@@ -14,9 +14,11 @@
             <form id="login-form" method="post">
                 <!-- <label>Username</label> -->
                 <input type="text" name="username" id="username" placeholder="Username" required>
+                <p class="error" id="username-error"></p>
                         
                 <!-- <label>Password</label> -->
                 <input type="password" name="password" id="password" placeholder="Password" required>
+                <p class="error" id="password-error"></p>
                     
                 <button type="button" name="submit" class="btn" onclick="login()">Submit</button>
     

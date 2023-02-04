@@ -13,6 +13,7 @@
 
     <body onload="navigate()">
         <p id="nav-placeholder"></p>
+        <p class="success" id="success-message" ></p>
 
         <h2>Upload a resource</h2>
         <form id="upload-form" method="post" enctype="multipart/form-data">
@@ -40,8 +41,9 @@
                 <label for="max-days">Max num of reading days</label>
                 <input type="number" name="max-days" id="max-days" required>
             </fieldset>
-
+            
             <button type="button" name="submit" onclick="uploadResource()">Upload</button>
+            <p class="error" id="upload-error"></p>
           </form>
     </body>
 </html>
