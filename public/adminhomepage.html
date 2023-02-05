@@ -16,11 +16,14 @@
 
     <body onload="homepage(); navigate()">
         <p id="nav-placeholder"></p>
-
-        <h2>Всички ресурси</h2>
-            <form>
-              <input type="text" id="search" placeholder="Търсене.." onkeyup="searchResource()" name="search">
-            </form>
-        <p id="resources"></p> 
+        <main class="page">
+            <h2>Всички ресурси</h2>
+            <section class="content">
+                <form>
+                    <input type="text" id="search" placeholder="Търсене.." onkeyup="searchResource()" name="search">
+                </form>
+                <p id="resources"></p> 
+            </section>
+        </main>
     </body>
 </html>
