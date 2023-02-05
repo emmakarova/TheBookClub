@@ -20,7 +20,7 @@
     const INSERT_USER = 'INSERT INTO users (username, password, names, admin_rights) VALUES (:username, :password, :names, :adminRights)';
 
 
-    const GET_ALL_RESOURCES = 'SELECT * FROM resources';
+    const GET_ALL_RESOURCES = 'SELECT resource_id, link, title, author, max_readers, max_reading_days FROM resources';
     const GET_ALL_RESOURCES_BY_USER = 'SELECT * 
                                        FROM resources
                                        LEFT JOIN resources_taken rt on resources.resource_id = rt.resource_id 
@@ -43,7 +43,7 @@
                               WHERE uploaded_by = :userId';
     const DELETE_RESOURCE = 'DELETE FROM resources WHERE resource_id = :resourceId';
 
-    const GET_NOTIFICATIONS = 'SELECT notification_id, date(received_at) as received_at, notification, seen FROM notifications
+    const GET_NOTIFICATIONS = 'SELECT notification_id, date(received_at) as received_at, message, seen FROM notifications
                                WHERE user_id = :userId';
     const MARK_NOTIFICATION_AS_READ = 'UPDATE notifications SET seen = true WHERE notification_id = :notificationId';
 ?>

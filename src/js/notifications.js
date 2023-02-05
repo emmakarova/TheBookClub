@@ -35,16 +35,34 @@ function notificationsCall(url) {
             }
         }
 
+        var labeledCols = [];
+        for (var i = 0; i < cols.length; i++) {
+            var col = cols[i];
+            var label = '';
+            switch(col) {
+                case 'received_at':
+                    label = 'Дата';
+                    break;
+                case 'message':
+                    label = 'Съобщение';
+                    break;
+                default:
+                    break;
+            }
+
+            labeledCols.push(label);
+        }
+
         // Create a table element
         var table = document.createElement("table");
             
         // Create table row tr element of a table
         var tr = table.insertRow(-1);
             
-        for (var i = 0; i < cols.length; i++) {        
+        for (var i = 0; i < labeledCols.length; i++) {        
             // Create the table header th element
             var theader = document.createElement("th");
-            theader.innerHTML = cols[i];
+            theader.innerHTML = labeledCols[i];
                 
             // Append columnName to the table row
             tr.appendChild(theader);
@@ -62,7 +80,7 @@ function notificationsCall(url) {
 
             // insert id of this user's notifications
             var cell = trow.insertCell(-1);
-            cell.innerHTML = list[i][0];
+            cell.innerHTML = i + 1;
 
             // insert received_at and notification
             for (var j = 1; j < cols.length - 1; j++) {
@@ -76,12 +94,10 @@ function notificationsCall(url) {
             var cell = trow.insertCell(-1);
             var id = "readBtn" + i;
             if (list[i]["seen"]) {
-                cell.innerHTML = '<input type="submit" id="' + id + '" name="markAsRead" class="btn btn-primary" ' +
-                    'value="Read" disabled=true">';
+                cell.innerHTML = '<button class="action-btn" id="' + id + '" type=\"button\" disabled=true>Проченето</button>';
             } else {
-                cell.innerHTML = '<input type="submit" id="' + id + '" name="markAsRead" id class="btn btn-primary" ' +
-                    'value="Mark as read" onclick="markAsRead(\'' + list[i]["notification_id"] + '\', \'' + id + '\')">';
-                console.log(cell.innerHTML);
+                cell.innerHTML = '<button class="action-btn" id="' + id + '" type=\"button\" ' + 
+                    'onclick="markAsRead(\'' + list[i]["notification_id"] + '\', \'' + id + '\')" >Отбележи като проченето</button>';
             }
         }
         

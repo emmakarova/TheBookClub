@@ -2,25 +2,31 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>My page</title>
+        <title>Моят профил</title>
 
         <script src="../src/js/mypage.js"></script>
         <script src="../src/js/navigation-loader.js"></script>
         <script src="../src/js/logout.js"></script>
 
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+        <link rel="stylesheet" href="css/style.css">
     </head>
 
     <body onload="mypage(); navigate()">
         <p id="nav-placeholder"></p>
-        <!-- <p class="success" id="success-message"></p> -->
+        <p class="success" id="success-message"></p>
 
-        <h2>My page</h2>
-        <section id="myProfile">
-            <h3>Profile info</h3>
-        </section>
-        <section id="resources">
-            <h3>My resources</h3>
-        </section>
+        <main class="page">
+            <h2>Моят профил</h2>
+            <section id="myProfile">
+                <h3>Информация</h3>
+                <p id="myInfo"></p>
+            </section>
+            <section id="myResources">
+                <h3>Моите ресурси</h3>
+                <p id="resources"></p> 
+            </section>
+        </main>
     </body>
 </html>

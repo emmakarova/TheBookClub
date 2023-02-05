@@ -16,8 +16,7 @@
         return getMyResources($db, $userId);
     } else if ($_SERVER["REQUEST_METHOD"] == "GET" && $_SERVER["QUERY_STRING"]) {
         return getMyProfile($db, $userId);
-    }
-    else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
         return deleteResource($db, $userId);
     } else {
         http_response_code(400);

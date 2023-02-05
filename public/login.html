@@ -2,25 +2,26 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Log in</title>
-
+        <title>Вход</title>
+        
         <script src="../src/js/login.js"></script>
+        <link rel="stylesheet" href="css/style.css">
     </head>
-
+    
     <body>
-        <h2>Log in</h2>
-        <form id="login-form" method="post">
-            <label>Username</label>
-            <input type="text" name="username" id="username" required>
-            <p class="error" id="username-error"></p>
-                      
-            <label>Password</label>
-            <input type="password" name="password" id="password" required>
-            <p class="error" id="password-error"></p>
-                  
-            <button type="button" name="submit" id="login-btn" class="btn btn-primary" onclick="login()">Submit</button>
-  
-            <p>Don't have an account? <a href="./register.html">Register here</a>.</p>
-        </form>
+        <main id="login-main">
+            <h2>Вход</h2>
+            <form id="login-form" method="post">
+                <input type="text" name="username" id="username" placeholder="Потребителско име" required>
+                <p class="error" id="username-error"></p>
+                        
+                <input type="password" name="password" id="password" placeholder="Парола" required>
+                <p class="error" id="password-error"></p>
+                    
+                <button type="button" name="submit" class="btn" onclick="login()">Вход</button>
+    
+                <p class="message">Нямаш акаунт? <a href="./register.html">Регистрирай се тук</a>.</p>
+            </form>
+        </main>
     </body>
 </html>

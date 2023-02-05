@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Homepage</title>
+        <title>Начало</title>
 
         <script src="../src/js/homepage.js"></script>
         <script src="../src/js/navigation-loader.js"></script>
@@ -10,15 +10,20 @@
         <script src="../src/js/searchResource.js"></script>
 
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+        <link rel="stylesheet" href="css/style.css">
     </head>
 
     <body onload="homepage(); navigate()">
         <p id="nav-placeholder"></p>
-
-        <h2>Resources to be displayed</h2>
-            <form>
-              <input type="text" id="search" placeholder="Search.." onkeyup="searchResource()"name="search">
-            </form>
-        <p id="resources"></p> 
+        <main class="page">
+            <h2>Всички ресурси</h2>
+            <section class="content">
+                <form>
+                    <input type="text" id="search" placeholder="Търсене.." onkeyup="searchResource()" name="search">
+                </form>
+                <p id="resources"></p> 
+            </section>
+        </main>
     </body>
 </html>

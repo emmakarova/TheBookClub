@@ -45,8 +45,7 @@
     if ($result[0]['admin_rights']) {
         $_SESSION['admin_rights'] = true;
         echo '../../public/adminHomepage.html';
-    }
-    else {
+    } else {
         $_SESSION['admin_rights'] = false;
         echo '../../public/homepage.html';
     }
