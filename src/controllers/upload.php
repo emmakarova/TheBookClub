@@ -7,12 +7,12 @@
     // check if authorized
     if (!isset($_SESSION["valid"])) {
         http_response_code(401);
-        exit('<p class="error">Unauthorized!</p>');
+        exit('Зло куче!');
     }
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         http_response_code(400);
-        exit('<p class="error">Unsuccessful login! Try again!</p>');
+        exit('Неуспешно влизане! Опитай пак!');
     }
 
     $userId = $_SESSION["user_id"];
@@ -27,7 +27,7 @@
     $insertQuery = $db->prepare(UPLOAD_RESOURCE);
     if (!$insertQuery) {
         http_response_code(500);
-        exit('<p class="error">Unsuccessful upload! Try again!</p>');
+        exit('Неуспешно добавяне на ресурс! Опитай пак!');
     }
 
     $insertQuery->bindParam(USER_ID_PARAM, $userId, PDO::PARAM_INT);
@@ -38,13 +38,11 @@
     $insertQuery->bindParam(MAX_DAYS_PARAM, $maxDays, PDO::PARAM_INT);
 
     try {
-    $insertQuery->execute();
+        $insertQuery->execute();
     } catch (PDOException $e) {
         http_response_code(500);
-        exit('<p class="error">Unsuccessful upload! Try again!</p>');
+        exit('Неуспешно добавяне на ресурс! Опитай пак!');
     }
 
-    echo '<p class="error">Successfully uploaded resource!</p>';
-
-    exit();
+    echo 'Успешно добавен ресурс!';
 ?>

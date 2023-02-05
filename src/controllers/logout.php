@@ -4,9 +4,9 @@
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         http_response_code(400);
-        exit('<p class="error">Unexpected call!</p>');
+        exit('Unexpected call!');
     }
-    // echo $_SESSION[0];
+
     unset($_SESSION["valid"]);
     unset($_SESSION["username"]);
     unset($_SESSION["user_id"]);

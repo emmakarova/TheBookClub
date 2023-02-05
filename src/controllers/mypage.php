@@ -7,7 +7,7 @@
     // check if authorized
     if (!isset($_SESSION["valid"])) {
         http_response_code(401);
-        exit('<p class="error">Unathorized!</p>');
+        exit('Unathorized!');
     }
 
     $userId = $_SESSION["user_id"];
@@ -20,7 +20,7 @@
         return deleteResource($db, $userId);
     } else {
         http_response_code(400);
-        exit('<p class="error">Unexpected call!</p>');
+        exit('Unexpected call!');
     }
 
     // get all currently reading resources for this user
@@ -34,7 +34,7 @@
         $query->bindParam(USER_ID_PARAM, $userId, PDO::PARAM_INT);
         if (!$query->execute()) {
             http_response_code(500);
-            exit('<p class="error">Something went wrong!</p>');
+            exit('Something went wrong');
         }
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -51,7 +51,7 @@
         $query->bindParam(USER_ID_PARAM, $userId, PDO::PARAM_INT);
         if (!$query->execute()) {
             http_response_code(500);
-            exit('<p class="error">Something went wrong!</p>');
+            exit('Something went wrong!');
         }
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -71,7 +71,9 @@
         $query->bindParam(RESOURCE_ID_PARAM, $resourceId, PDO::PARAM_INT);
         if (!$query->execute()) {
             http_response_code(500);
-            exit('<p class="error">Something went wrong!</p>');
+            exit('Something went wrong!');
         }
+
+        echo 'Успешно изтрит ресурс!';
     }
 ?>

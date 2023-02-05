@@ -1,6 +1,26 @@
 const myreading = () => {
     var url = '../src/controllers/myreading.php';
+    showSuccessMessage();
     myreadingCall(url);
+}
+
+function showSuccessMessage() {
+    console.log(sessionStorage.reloadAfterPageLoad);
+    if (!sessionStorage.reloadAfterPageLoad) {
+        return;
+    }
+
+    let message = sessionStorage.getItem("return-message");
+    var success = document.getElementById("return-response-message");
+    success.innerHTML = message;
+    document.body.insertBefore(success, document.body.children[1]);
+
+    sessionStorage.reloadAfterPageLoad = false;
+    sessionStorage.removeItem("return-message");
+
+    setTimeout(() => {
+        success.style.display = "none";
+    }, 5000);
 }
 
 function myreadingCall(url) {
@@ -18,7 +38,6 @@ function myreadingCall(url) {
             return;
         }
 
-        console.log(xhr.response);
         var list = xhr.response;
 
         if (list == null) {
@@ -84,7 +103,6 @@ function myreadingCall(url) {
                     
                 // Inserting the cell at particular place
                 cell.innerHTML = list[i][cols[j]];
-                console.log(cols[j], list[i][cols[j]]);
                 if (cols[j] == 'rate' && list[i][cols[j]] == null) {
                     cell.innerHTML = '--';
                 }
@@ -119,7 +137,6 @@ function returnResourceCall(url, resourceId) {
     let rate;
     let ratePrompt = prompt("Please rate the resource (1-5):", "5");
     if (ratePrompt == null || ratePrompt == "") {
-        console.log("User cancelled the prompt.");
         return;
     } else {
         rate = ratePrompt;
@@ -143,6 +160,9 @@ function returnResourceCall(url, resourceId) {
             console.log("response = ", xhr.responseText,  "\nstatus = ", xhr.status);
             return;
         }
+
+        sessionStorage.reloadAfterPageLoad = true;
+        sessionStorage.setItem("return-message", xhr.responseText);
         
         location.reload();
     }

@@ -7,7 +7,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         http_response_code(400);
-        exit('<p class="error">Unsuccessful login! Try again!</p>');
+        exit('Неуспешен вход! Опитай пак!');
     }
 
     $username = $_POST['username'];
@@ -16,26 +16,26 @@
     $query = $db->prepare(GET_USER_PASSWORD);
     if (!$query) {
         http_response_code(500);
-        exit('<p class="error">Unsuccessful login! Try again!</p>');
+        exit('Неуспешен вход! Опитай пак!');
     }
 
     $query->bindParam(USERNAME_PARAM, $username, PDO::PARAM_STR);
     if (!$query->execute()) {
         http_response_code(500);
-        exit('<p class="error">Unsuccessful login! Try again!</p>');
+        exit('Неуспешен вход! Опитай пак!');
     }
 
     $result = $query->fetchAll();
     if (count($result) == 0) {
         http_response_code(405);
-        exit('<p class="error">This username does not exist!</p>');
+        exit('Не съществува такова потребителско име!');
     }
 
     $encryptedPassword = $result[0]['password'];
 
     if (!password_verify($password, $encryptedPassword)) {
         http_response_code(403);
-        exit('<p class="error">Wrong password!</p>');
+        exit('Грешна парола!');
     }
 
     $_SESSION['valid'] = true;

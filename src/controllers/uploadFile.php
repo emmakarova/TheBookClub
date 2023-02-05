@@ -4,12 +4,12 @@
     // check if authorized
     if (!isset($_SESSION["valid"])) {
         http_response_code(401);
-        exit('<p class="error">Unathorized!</p>');
+        exit('Unathorized!');
     }
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         http_response_code(400);
-        exit('<p class="error">Unexpected call!</p>');
+        exit('Unexpected call!');
     }
 
     /* Get the name of the uploaded file */
@@ -26,9 +26,9 @@
 
     /* Save the uploaded file to the local filesystem */
     if (move_uploaded_file($_FILES['file']['tmp_name'], $location)) { 
-        echo 'Success'; 
+        echo 'Успешно добавен файл!'; 
     } else { 
-        echo 'Failure'; 
+        echo 'Неуспешно добавен файл!'; 
     }
 
     exit();

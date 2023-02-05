@@ -20,7 +20,7 @@ html {
 
 
 body {
-    /* background-color: #f3e8ec; */
+    background-color: #f3e8ec;
     font-family: 'Ubuntu', sans-serif;
 }
 
@@ -120,10 +120,13 @@ a {
     }
 }
 
-nav {
+#nav-placeholder {
     overflow: auto;
     position: sticky;
     top: 0%;
+}
+
+nav {
     margin-left: 10%;
     display: flex;
     justify-content: center;
