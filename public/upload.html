@@ -2,48 +2,52 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Upload a resource</title>
+        <title>Добавяне на ресурс</title>
 
         <script src="../src/js/upload.js"></script>
         <script src="../src/js/navigation-loader.js"></script>
         <script src="../src/js/logout.js"></script>
 
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+        <link rel="stylesheet" href="css/style.css">
     </head>
 
     <body onload="navigate()">
         <p id="nav-placeholder"></p>
         <p class="success" id="success-message" ></p>
 
-        <h2>Upload a resource</h2>
-        <form id="upload-form" method="post" enctype="multipart/form-data">
-            <fieldset>
-                <label for="link-btn">Link</label>
-                <input type="radio" id="link-btn" name="resource-type" checked onclick="allowChoosenInput()"/>
+        <main id="upload-main">
+            <h2>Добавяне на ресурс</h2>
+            <form id="upload-form" method="post" enctype="multipart/form-data">
+                <fieldset id="upper-fieldset">
+                    <section class="upload-section">
+                        <input type="radio" class="link-upload" id="link-btn" name="resource-type" checked onclick="allowChoosenInput()"/>
+                        <label for="link-btn" class="upload-label">Линк към ресурс</label>
+                    </section>
+
+                    <section class="upload-section">
+                        <input type="radio" class="link-upload" id="file-btn" name="resource-type" onclick="allowChoosenInput()"/>
+                        <label for="file-btn" class="upload-label">Файл</label>
+                    </section>
+
+                    <input type="text" class="upload-input" name="link" id="link" placeholder="Линк">
+                    <input class="upload-input" id="file" type="file" name="fileupload" style="display: none;"/>
+                </fieldset>
+
+                <fieldset>
+                    <input type="text" name="title" class="upload-input" id="title" placeholder="Заглавие" required>
+
+                    <input type="text" name="author" class="upload-input" id="author" placeholder="Автор" required>
+
+                    <input type="number" name="max-readers" class="upload-input" id="max-readers" placeholder="Брой читатели" required>
+
+                    <input type="number" name="max-days" class="upload-input" id="max-days" placeholder="Дни за заемане" required>
+                </fieldset>
                 
-                <label for="file-btn">File</label>
-                <input type="radio" id="file-btn" name="resource-type" onclick="allowChoosenInput()"/>
-                <br>
-                <input type="text" name="link" id="link">
-                <input id="file" type="file" name="fileupload" style="display: none;"/>
-            </fieldset>
-
-            <fieldset>
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title" required>
-
-                <label for="author">Author</label>
-                <input type="text" name="author" id="author" required>
-
-                <label for="max-readers">Max num of readers</label>
-                <input type="number" name="max-readers" id="max-readers" required>
-
-                <label for="max-days">Max num of reading days</label>
-                <input type="number" name="max-days" id="max-days" required>
-            </fieldset>
-            
-            <button type="button" name="submit" onclick="uploadResource()">Upload</button>
-            <p class="error" id="upload-error"></p>
-          </form>
+                <button type="button" class="btn" id="upload-btn" name="submit" onclick="uploadResource()">Добави</button>
+                <p class="error" id="upload-error"></p>
+            </form>
+        </main>
     </body>
 </html>

@@ -1,0 +1,267 @@
+html {
+    /* background:  */
+        /* linear-gradient(180deg, rgba(248, 184, 139,0) 20%, rgba(248, 184, 139,.1) 20%, rgba(248, 184, 139,.1) 40%, rgba(248, 184, 139,.2) 40%, rgba(248, 184, 139,.2) 60%, rgba(248, 184, 139,.4) 60%, rgba(248, 184, 139,.4) 80%, rgba(248, 184, 139,.5) 80%); */
+        /* linear-gradient(45deg, rgba(250, 248, 132,.3) 20%, rgba(250, 248, 132,.4) 20%, rgba(250, 248, 132,.4) 40%, rgba(250, 248, 132,.5) 40%, rgba(250, 248, 132,.5) 60%, rgba(250, 248, 132,.6) 60%, rgba(250, 248, 132,.6) 80%, rgba(250, 248, 132,.7) 80%); */
+        /* linear-gradient(-45deg, rgba(186, 237, 145,0) 20%, rgba(186, 237, 145,.1) 20%, rgba(186, 237, 145,.1) 40%, rgba(186, 237, 145,.2) 40%, rgba(186, 237, 145,.2) 60%, rgba(186, 237, 145,.4) 60%, rgba(186, 237, 145,.4) 80%, rgba(186, 237, 145,.6) 80%); */
+        /* linear-gradient(90deg, rgba(178, 206, 254,0) 20%, rgba(178, 206, 254,.3) 20%, rgba(178, 206, 254,.3) 40%, rgba(178, 206, 254,.5) 40%, rgba(178, 206, 254,.5) 60%, rgba(178, 206, 254,.7) 60%, rgba(178, 206, 254,.7) 80%, rgba(178, 206, 254,.8) 80%); */
+        /* linear-gradient(-90deg, rgba(242, 162, 232,0) 20%, rgba(242, 162, 232,.4) 20%, rgba(242, 162, 232,.4) 40%, rgba(242, 162, 232,.5) 40%, rgba(242, 162, 232,.5) 60%, rgba(242, 162, 232,.6) 60%, rgba(242, 162, 232,.6) 80%, rgba(242, 162, 232,.8) 80%); */
+        /* linear-gradient(180deg, rgba(254, 163, 170,0) 20%, rgba(254, 163, 170,.4) 20%, rgba(254, 163, 170,.4) 40%, rgba(254, 163, 170,.6) 40%, rgba(254, 163, 170,.6) 60%, rgba(254, 163, 170,.8) 60%, rgba(254, 163, 170,.8) 80%, rgba(254, 163, 170,.9) 80%); */
+    background-color: rgb(254, 163, 170);
+    background-size: 100% 100%;
+    min-height: 100%;
+}
+
+body {
+    /* background-color: #f3e8ec; */
+    font-family: 'Ubuntu', sans-serif;
+}
+
+main:not(.page) {
+    background-color: #FFFFFF;
+    margin: 7em auto;
+    width: 400px;
+    padding-bottom: 20px;
+    border-radius: 1.5em;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+}
+
+h2, h3 {
+    padding-top: 40px;
+    color: #7c388a;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    font-size: 23px;
+    text-align: center;
+}
+
+input:not(#search, input[type="radio"]) {
+    width: 76%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.04);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    margin-bottom: 50px;
+    margin-left: 46px;
+    text-align: center;
+    margin-bottom: 27px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+form {
+    padding-top: 30px;
+}
+
+
+input:focus {
+    border: 2px solid rgba(0, 0, 0, 0.18) !important;
+}
+
+.btn {
+    cursor: pointer;
+    border-radius: 5em;
+    color: rgb(19, 18, 18);
+    background: linear-gradient(to right, #b58ccb, #E1BEE7);
+    border: 0;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    margin-left: 35%;
+    margin-top: 5px;
+    font-size: 13px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+}
+
+.message {
+    text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+    color: #E1BEE7;
+    padding-top: 15px;
+    text-align: center;
+}
+
+.error {
+    color: #8C55AA;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    text-align: center;
+    margin-top: -10px;
+}
+
+a {
+    text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+    color: #E1BEE7;
+    text-decoration: none;
+    font-weight: 900;
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    main {
+        border-radius: 0px;
+        width: 80%;
+        margin-top: 20%;
+    }
+}
+
+nav {
+    overflow: auto;
+    position: sticky;
+    top: 0%;
+    margin-left: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+nav a {
+    float: left;
+    color: #9658a2;
+    text-align: center;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    font-size: large;
+}
+
+nav a:hover {
+    background-color: rgb(235, 218, 229);;
+}
+
+nav #logout-btn {
+    margin-left: auto;
+    color: #9658a2;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    font-size: large;
+    font-weight: 900;
+    text-decoration: underline;
+    margin-right: 2%;
+}
+
+section:not(.content, .upload-section, #myProfile, #myProfile, #myResources) {
+    display: flex;
+    justify-content: center;
+}
+
+.page {
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-bottom: 20px;
+    /* border: solid black; */
+}
+
+#search {
+    border-radius: 5px;
+    width: 30%;
+    font-size: medium;
+    padding: 0.2%;
+    margin-left: 0.5%;
+}
+
+table {
+    table-layout: auto;
+    /* border: solid black; */
+    min-width: 50%;
+    max-width: 85%;
+    border-spacing: 10px;
+}
+
+th {
+    /* border: solid black; */
+    font-size: medium;
+}
+
+td {
+    /* border: solid black; */
+    font-size: medium;
+    padding-top: 1%;
+}
+
+.action-btn {
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    font-size: medium;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.number-cell {
+    text-align: center;
+}
+
+#upload-main {
+    width: 50%;
+}
+
+.upload-section {
+    display: block;
+}
+
+.upload-input {
+    width: 100% !important;
+    text-align: left !important;
+    margin-left: 0% !important;
+}
+
+#link, #file {
+    margin-bottom: 2% !important;
+    margin-top: 1% !important;
+}
+
+.link-upload {
+    padding: 10px 20px;
+    margin-bottom: 2%;
+}
+
+#file {
+    width: 100% !important;
+    background: #FFFFFF !important;
+    padding: 10px 20px;
+    border: none !important;
+    text-align: center;
+}
+
+.upload-label {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 550;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: rgb(88, 87, 87);
+}
+
+fieldset {
+    border: none;
+    width: 80%;
+    margin: auto;
+}
+
+#upper-fieldset {
+    border-bottom: solid #ffffff;
+    margin-bottom: 2%;
+    box-shadow:  0 4px 4px -4px #d4c5d6; 
+}
+
+#upload-btn {
+    margin-left: 70% !important;
+}
+
+h3 {
+    text-align: left !important;
+    margin-left: 6%;
+}
+
+#myInfo {
+    margin-left: 4%;
+}

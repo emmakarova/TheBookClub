@@ -3,6 +3,7 @@ const homepage = async () => {
 
     var allResources = await getAllResources(url)
     .then(function (result) {
+        console.log(result);
         return result;
     });
 
@@ -23,17 +24,44 @@ const homepage = async () => {
             }
         }
     }
-    
+
     cols.push('');
+
+    var labeledCols = [];
+    for (var i = 0; i < cols.length; i++) {
+        var col = cols[i];
+        var label = '';
+        switch(col) {
+            case 'title':
+                label = 'Заглавие';
+                break;
+            case 'author':
+                label = 'Автор';
+                break;
+            case 'link':
+                label= 'Линк към ресурса';
+                break;
+            case 'max_reading_days':
+                label = 'Дни за четене';
+                break;
+            case 'times_read':
+                label = 'Брой заемания';
+                break;
+            default:
+                break;
+        }
+
+        labeledCols.push(label);
+    }
     
     var table = document.createElement("table");
     table.setAttribute("id","resources_table");
 
     var tr = table.insertRow(-1);
 
-    for (var i = 0; i < cols.length; i++) {
+    for (var i = 0; i < labeledCols.length; i++) {
         var theader = document.createElement("th");
-        theader.innerHTML = cols[i];
+        theader.innerText = labeledCols[i];
 
         tr.appendChild(theader);
     }
@@ -42,13 +70,11 @@ const homepage = async () => {
         var buttonTag = '';
 
         if (isAlreadyTaken(allResources[i],userResources)) {
-            buttonTag = '<button class="btn" type=\"button\" disabled=true>Already Taken</button>';
-        }
-        else if (allResources[i].current_readers >= allResources[i].max_readers) {
-            buttonTag = '<button class="btn" type=\"button\" disabled=true>Unavailable</button>';
-        }
-        else {
-            buttonTag = '<button class="btn" type=\"button\" onclick=\"take(' + allResources[i]['resource_id'] + ',' + (i+1) + ')\">Take</button>';
+            buttonTag = '<button class="action-btn" type=\"button\" disabled=true>Зает от мен</button>';
+        } else if (allResources[i].current_readers >= allResources[i].max_readers) {
+            buttonTag = '<button class="action-btn" type=\"button\" disabled=true>Неналичен</button>';
+        } else {
+            buttonTag = '<button class="action-btn" type=\"button\" onclick=\"take(' + allResources[i]['resource_id'] + ',' + (i+1) + ')\">Заеми</button>';
         }
         
         insertResourceInTable(cols, allResources[i], table, buttonTag);
@@ -66,8 +92,17 @@ function insertResourceInTable(cols, resource, table, buttonTag) {
         
         if (j == cols.length - 1) {
             cell.innerHTML = buttonTag;
-        }else {
+        } else {
             cell.innerHTML = resource[cols[j]];
+        }
+
+        switch(cols[j]) {
+            case 'max_reading_days':
+            case 'times_read':
+                cell.className = "number-cell";
+                break;
+            default:
+                break;
         }
     }
 }

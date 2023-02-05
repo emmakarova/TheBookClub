@@ -2,19 +2,22 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Notifications</title>
+        <title>Известия</title>
 
         <script src="../src/js/notifications.js"></script>
         <script src="../src/js/navigation-loader.js"></script>
         <script src="../src/js/logout.js"></script>
 
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+        <link rel="stylesheet" href="css/style.css">
     </head>
 
     <body onload="notifications(); navigate()">
         <p id="nav-placeholder"></p>
-
-        <h2>Notifications</h2>
-        <section id="notifications"></section>
+        <main class="page">
+            <h2>Известия</h2>
+            <p id="notifications"></p>
+        </main>
     </body>
 </html>

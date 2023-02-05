@@ -2,19 +2,22 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>My reading</title>
+        <title>Моето табло</title>
 
         <script src="../src/js/myreading.js"></script>
         <script src="../src/js/navigation-loader.js"></script>
         <script src="../src/js/logout.js"></script>
 
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+        <link rel="stylesheet" href="css/style.css">
     </head>
 
     <body onload="myreading(); navigate()">
         <p id="nav-placeholder"></p>
-
-        <h2>Currently reading</h2>
-        <p id="resources"></p>
+        <main class="page">
+            <h2>Заети ресурси</h2>
+            <p id="resources"></p>
+        </main>
     </body>
 </html>
