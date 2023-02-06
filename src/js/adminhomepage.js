@@ -120,6 +120,10 @@ function insertResourceInTable(cols, resource, table, takeButtonTag, deleteButto
 
         switch(cols[j]) {
             case 'rate':
+                cell.className = "number-cell";
+                var floatRate = parseFloat(cell.innerHTML);
+                cell.innerHTML = floatRate.toPrecision(3);
+                break;
             case 'max_reading_days':
             case 'times_read':
                 cell.className = "number-cell";
