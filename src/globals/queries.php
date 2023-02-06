@@ -20,13 +20,16 @@
     const INSERT_USER = 'INSERT INTO users (username, password, names, admin_rights) VALUES (:username, :password, :names, :adminRights)';
 
 
-    const GET_ALL_RESOURCES = 'SELECT resource_id, link, title, author, max_readers, max_reading_days FROM resources';
+    const GET_ALL_RESOURCES = 'SELECT resources.resource_id, link, title, max_readers, max_reading_days,author,times_read, AVG(rate) as rate
+                               FROM resources
+                               LEFT JOIN rates ON rates.resource_id = resources.resource_id
+                               GROUP BY resources.resource_id';
     const GET_ALL_RESOURCES_BY_USER = 'SELECT * 
                                        FROM resources
                                        LEFT JOIN resources_taken rt on resources.resource_id = rt.resource_id 
                                        WHERE rt.user_id = :user_id';
 
-    const GET_CURRENTLY_READING = 'SELECT resources.resource_id, title, author, date(resources_taken.date_to_return) as date, AVG(rate) as rate
+    const GET_CURRENTLY_READING = 'SELECT resources.resource_id, title, author, link, date(resources_taken.date_to_return) as date, AVG(rate) as rate
                                    FROM resources 
                                    JOIN resources_taken ON resources.resource_id = resources_taken.resource_id
                                    LEFT JOIN rates ON rates.resource_id = resources_taken.resource_id
