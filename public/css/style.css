@@ -184,7 +184,7 @@ section:not(.content, .upload-section, #myProfile, #myProfile, #myResources, ) {
 table {
     table-layout: auto;
     box-shadow:  0 4px 2px -4px #d4c5d6; 
-    min-width: 50%;
+    min-width: 65%;
     max-width: 85%;
 }
 
@@ -338,4 +338,8 @@ footer {
 
 #github-p {
     margin-top: 1%;
+}
+
+.content, #myProfile, #myResources {
+    margin-left: 5%;
 }
