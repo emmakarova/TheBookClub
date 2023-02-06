@@ -101,8 +101,19 @@ function registerCall(url){
             passwordErrors.innerHTML = xhr.responseText;
             return;
         }
-
-        window.location.href = xhr.responseText;
+        
+        showSuccessMessage("Успешно регистриран администратор!");
+        form.reset();
     }
 }
   
+function showSuccessMessage(message) {
+    var success = document.getElementById("addadmin-response-message");
+    success.innerHTML = message;
+    success.style.padding = "0.5%";
+
+    setTimeout(() => {
+        success.style.display = "none";
+        success.style.padding = "0%";
+    }, 5000);
+}

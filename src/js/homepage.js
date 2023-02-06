@@ -1,6 +1,8 @@
 const homepage = async () => {
     var url = '../src/controllers/homepage.php';
 
+    showSuccessMessage();
+
     var allResources = await getAllResources(url)
     .then(function (result) {
         console.log(result);
@@ -79,9 +81,9 @@ const homepage = async () => {
         var buttonTag = '';
 
         if (isAlreadyTaken(allResources[i],userResources)) {
-            buttonTag = '<button class="action-btn" type=\"button\" disabled=true>Зает от мен</button>';
+            buttonTag = '<button class="action-btn btn-taken" type=\"button\" disabled=true>Зает от мен</button>';
         } else if (allResources[i].current_readers >= allResources[i].max_readers) {
-            buttonTag = '<button class="action-btn" type=\"button\" disabled=true>Неналичен</button>';
+            buttonTag = '<button class="action-btn btn-taken" type=\"button\" disabled=true>Неналичен</button>';
         } else {
             buttonTag = '<button class="action-btn" type=\"button\" onclick=\"take(' + allResources[i]['resource_id'] + ',' + (i+1) + ')\">Заеми</button>';
         }
@@ -179,6 +181,29 @@ function take(id) {
         if (xhr.status != 200) {
            console.log("err", xhr.response);
         }
+
+        sessionStorage.reloadAfterPageLoad = 'true';
+        sessionStorage.setItem("return-message", xhr.responseText);
+        
         location.reload();
     }
+}
+
+function showSuccessMessage() {
+    if (sessionStorage.reloadAfterPageLoad != 'true') {
+        return;
+    }
+
+    let message = sessionStorage.getItem("return-message");
+    var success = document.getElementById("homepage-response-message");
+    success.innerHTML = message;
+    success.style.padding = "0.5%";
+
+    sessionStorage.reloadAfterPageLoad = 'false';
+    sessionStorage.removeItem("return-message");
+
+    setTimeout(() => {
+        success.style.display = "none";
+        success.style.padding = "0%";
+    }, 5000);
 }

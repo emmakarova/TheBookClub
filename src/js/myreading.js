@@ -5,21 +5,21 @@ const myreading = () => {
 }
 
 function showSuccessMessage() {
-    console.log(sessionStorage.reloadAfterPageLoad);
-    if (!sessionStorage.reloadAfterPageLoad) {
+    if (sessionStorage.reloadAfterPageLoad != 'true') {
         return;
     }
 
     let message = sessionStorage.getItem("return-message");
     var success = document.getElementById("return-response-message");
     success.innerHTML = message;
-    document.body.insertBefore(success, document.body.children[1]);
+    success.style.padding = "0.5%";
 
-    sessionStorage.reloadAfterPageLoad = false;
+    sessionStorage.reloadAfterPageLoad = 'false';
     sessionStorage.removeItem("return-message");
 
     setTimeout(() => {
         success.style.display = "none";
+        success.style.padding = "0%";
     }, 5000);
 }
 
@@ -187,7 +187,7 @@ function returnResourceCall(url, resourceId) {
             return;
         }
 
-        sessionStorage.reloadAfterPageLoad = true;
+        sessionStorage.reloadAfterPageLoad = 'true';
         sessionStorage.setItem("return-message", xhr.responseText);
         
         location.reload();

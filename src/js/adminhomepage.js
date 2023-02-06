@@ -1,5 +1,6 @@
 const homepage = async () => {
     var url = '../src/controllers/homepage.php';
+    showSuccessMessage();
 
     var allResources = await getAllResources(url)
     .then(function (result) {
@@ -183,6 +184,10 @@ function take(id) {
         if (xhr.status != 200) {
            console.log("err", xhr.response);
         }
+
+        sessionStorage.reloadAfterPageLoad = 'true';
+        sessionStorage.setItem("return-message", xhr.responseText);
+
         location.reload();
     }
 }
@@ -213,7 +218,29 @@ function deleteResourceCall(url, resourceId) {
             console.log("response = ", xhr.responseText,  "\nstatus = ", xhr.status);
             return;
         }
-        
+
+        sessionStorage.reloadAfterPageLoad = 'true';
+        sessionStorage.setItem("return-message", xhr.responseText);
+
         location.reload();
     }
+}
+
+function showSuccessMessage() {
+    if (sessionStorage.reloadAfterPageLoad != 'true') {
+        return;
+    }
+
+    let message = sessionStorage.getItem("return-message");
+    var success = document.getElementById("homepage-response-message");
+    success.innerHTML = message;
+    success.style.padding = "0.5%";
+
+    sessionStorage.reloadAfterPageLoad = 'false';
+    sessionStorage.removeItem("return-message");
+
+    setTimeout(() => {
+        success.style.display = "none";
+        success.style.padding = "0%";
+    }, 5000);
 }
