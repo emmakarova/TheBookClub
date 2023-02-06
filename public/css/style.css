@@ -132,13 +132,13 @@ nav {
 
 nav a {
     float: left;
-    color: #6f357b;
+    color: #6f357b !important;
     text-align: center;
     padding-right: 15px;
     padding-left: 15px;
     padding-top: 10px;
     padding-bottom: 10px;
-    text-decoration: none;
+    text-decoration: none !important;
     font-size: large;
 }
 
