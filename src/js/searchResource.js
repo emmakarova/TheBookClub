@@ -32,6 +32,6 @@ function searchResource() {
 
     if (visibleRowsCounter === 0) {
         var noDataRow = table.insertRow(-1);
-        noDataRow.innerHTML = "<td id=\"no-resources\" colspan=5 style=\"text-align:center;\">No resources found</td>";
+        noDataRow.innerHTML = "<td id=\"no-resources\" colspan=5 style=\"text-align:center;\">Няма намерени ресурси</td>";
     }
 }

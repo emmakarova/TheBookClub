@@ -40,9 +40,14 @@ function myreadingCall(url) {
 
         var list = xhr.response;
 
-        if (list == null) {
+        if (list == null || list.length == 0) {
+            var message = document.getElementById("empty-message-myreading");
+            message.style.display = "block";
             return;
         }
+
+        var message = document.getElementById("empty-message-myreading");
+        message.style.display = "none";
 
         var cols = [];
                 

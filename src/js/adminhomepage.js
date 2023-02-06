@@ -11,6 +11,17 @@ const homepage = async () => {
         return result;
     });
 
+
+    if (allResources == null || allResources.length == 0) {
+        var message = document.getElementById("empty-message-homepage");
+        message.style.display = "block";
+        return;
+    }
+
+    var message = document.getElementById("empty-message-homepage");
+    message.style.display = "none";
+
+
     var cols = [];
             
     for (var i = 0; i < allResources.length; i++) {
