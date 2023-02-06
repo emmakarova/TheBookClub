@@ -14,6 +14,9 @@ const uploadResource = () => {
     var daysErrors = document.getElementById("days-error");
     daysErrors.innerHTML = "";
 
+    var uploadErrors = document.getElementById("upload-error");
+    uploadErrors.innerHTML = "";
+
     if (!validateInput()) {
         return;
     }
@@ -31,6 +34,16 @@ function validateInput() {
         var linkErrors = document.getElementById("link-error");
         linkErrors.innerHTML = 'Моля попълни полето за линк!';
         validInput = false;
+    }
+
+    if (link.style.display == 'block') {
+        try {
+            new URL(link.value);
+        } catch (err) {
+            var linkErrors = document.getElementById("link-error");
+            linkErrors.innerHTML = 'Линкът е невалиден!';
+            validInput = false;
+        }
     }
 
     var title = String(document.querySelector('#title').value);

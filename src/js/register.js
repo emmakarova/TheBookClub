@@ -50,9 +50,11 @@ function validateInput() {
 
     var password = String(document.querySelector('#password').value);
 
-    if (password== null || password.length == 0) {
+    const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
+    if (password == null || !pattern.test(password)) {
         var passwordErrors = document.getElementById("password-error");
-        passwordErrors.innerHTML = 'Моля попълни полето за парола!';
+        passwordErrors.innerHTML = 'Паролата трябва да съдържа поне 6 символа,<br> цифра, главна и малка буква!';
 
         validInput = false;
     }
