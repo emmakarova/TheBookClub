@@ -72,11 +72,6 @@ function notificationsCall(url) {
             // Append columnName to the table row
             tr.appendChild(theader);
         }
-
-        // // create column for 'release resource' button
-        // var theader = document.createElement("th");
-        // theader.innerHTML = "Return the resource";
-        // tr.appendChild(theader);
             
         // Adding the data to the table
         for (var i = 0; i < list.length; i++) {       
@@ -99,9 +94,9 @@ function notificationsCall(url) {
             var cell = trow.insertCell(-1);
             var id = "readBtn" + i;
             if (list[i]["seen"]) {
-                cell.innerHTML = '<button class="action-btn" id="' + id + '" type=\"button\" disabled=true>Проченето</button>';
+                cell.innerHTML = '<button class="action-btn btn-taken" id="' + id + '" type=\"button\" disabled=true>Проченето</button>';
             } else {
-                cell.innerHTML = '<button class="action-btn" id="' + id + '" type=\"button\" ' + 
+                cell.innerHTML = '<button class="action-btn btn-taken" id="' + id + '" type=\"button\" ' + 
                     'onclick="markAsRead(\'' + list[i]["notification_id"] + '\', \'' + id + '\')" >Отбележи като проченето</button>';
             }
         }

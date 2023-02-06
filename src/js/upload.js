@@ -132,8 +132,8 @@ function uploadResourceCall(url) {
             return;
         }
 
-        showSuccessMessage(xhr.responseText);
         form.reset();
+        showSuccessMessage(xhr.responseText);
         allowChoosenInput();
     }
 }
