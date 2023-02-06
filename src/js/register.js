@@ -1,6 +1,63 @@
 const register = () => {
+    var firstNameErrors = document.getElementById("first-name-error");
+    firstNameErrors.innerHTML = "";
+
+    var lastNameErrors = document.getElementById("last-name-error");
+    lastNameErrors.innerHTML = "";
+
+    var passwordErrors = document.getElementById("password-error");
+    passwordErrors.innerHTML = "";
+
+    var usernameErrors = document.getElementById("username-error");
+    usernameErrors.innerHTML = "";
+
+    if (!validateInput()) {
+        return; 
+    }
+
     var url = '../src/controllers/register.php';
     registerCall(url);
+}
+
+function validateInput() {
+    var validInput = true;
+
+    var firstName = String(document.querySelector('#first-name').value);
+
+    if (firstName == null || firstName.length == 0) {
+        var firstNameErrors = document.getElementById("first-name-error");
+        firstNameErrors.innerHTML = 'Моля попълни полето за име!';
+        validInput = false;
+    }
+
+    var lastName = String(document.querySelector('#last-name').value);
+
+    if (lastName == null || lastName.length == 0) {
+        var lastNameErrors = document.getElementById("last-name-error");
+        lastNameErrors.innerHTML = 'Моля попълни полето за фамилия!';
+
+        validInput = false;
+    }
+
+    var username = String(document.querySelector('#username').value);
+
+    if (username == null || username.length == 0) {
+        var usernameErrors = document.getElementById("username-error");
+        usernameErrors.innerHTML = 'Моля попълни полето за потребителско име!';
+
+        validInput = false;
+    }
+
+    var password = String(document.querySelector('#password').value);
+
+    if (password== null || password.length == 0) {
+        var passwordErrors = document.getElementById("password-error");
+        passwordErrors.innerHTML = 'Моля попълни полето за парола!';
+
+        validInput = false;
+    }
+
+    return validInput;
 }
 
 function registerCall(url){
@@ -29,15 +86,15 @@ function registerCall(url){
         if (xhr.status == 409) {
             var usernameErrors = document.getElementById("username-error");
             usernameErrors.innerHTML = xhr.responseText;
-            var passwordErrors = document.getElementById("password-error");
-            passwordErrors.innerHTML = "";
+            // var passwordErrors = document.getElementById("password-error");
+            // passwordErrors.innerHTML = "";
             return;
         }
 
         // + == 403
         if (xhr.status != 200) {
-            var usernameErrors = document.getElementById("username-error");
-            usernameErrors.innerHTML = "";
+            // var usernameErrors = document.getElementById("username-error");
+            // usernameErrors.innerHTML = "";
             var passwordErrors = document.getElementById("password-error");
             passwordErrors.innerHTML = xhr.responseText;
             return;
