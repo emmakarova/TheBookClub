@@ -66,19 +66,20 @@ input:focus {
 
 .btn {
     cursor: pointer;
-    border-radius: 5em;
+    border-radius: 10% / 50%;
     color: rgb(255, 255, 255);
-    background: linear-gradient(to right, #e1a6e8, #e1cee4);
+    background: linear-gradient(to right, rgb(235, 198, 239), rgba(254, 163, 170, 0.7));
     border: 0;
     padding-left: 40px;
     padding-right: 40px;
     padding-bottom: 10px;
     padding-top: 10px;
     font-family: 'Ubuntu', sans-serif;
+    font-weight: 600;
     margin-left: 35%;
     margin-top: 5px;
-    font-size: 13px;
-    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    font-size: 14px;
+    box-shadow: 0px 5px 8px 2px rgba(81, 81, 81, 0.3);
 }
 
 .btn:hover {
@@ -166,8 +167,12 @@ section:not(.content, .upload-section, #myProfile, #myProfile, #myResources, ) {
 .page {
     margin-left: 5%;
     margin-right: 5%;
-    margin-bottom: 10%;
+    margin-bottom: 10% !important;
     padding-bottom: 20px;
+}
+
+#upload-main {
+    margin-bottom: 12%;
 }
 
 #search {
@@ -183,9 +188,12 @@ section:not(.content, .upload-section, #myProfile, #myProfile, #myResources, ) {
 
 table {
     table-layout: auto;
-    box-shadow:  0 4px 2px -4px #d4c5d6; 
+    /* box-shadow:  0 4px 2px -4px #d4c5d6;  */
     min-width: 65%;
     max-width: 85%;
+    color: #523A28;
+    /* border: 1px white solid; */
+    box-shadow: 0.5px 0.5px 0.5px 2px rgba(255, 255, 255, 0.6);
 }
 
 th {
@@ -209,9 +217,10 @@ tr:nth-child(even) {
     cursor: pointer;
     background: transparent;
     border: 0;
-    font-size: medium;
-    font-weight: 700;
+    font-size: large;
+    font-weight: 600;
     text-decoration: underline;
+    color: #35251ab5;
 }
 
 .number-cell {
@@ -224,6 +233,7 @@ tr:nth-child(even) {
 
 .upload-section {
     display: block;
+    background-color: rgb(242, 235, 235);
 }
 
 .upload-input {
@@ -235,6 +245,10 @@ tr:nth-child(even) {
 #link, #file {
     margin-bottom: 2% !important;
     margin-top: 1% !important;
+}
+
+#file-btn {
+    background-color: rgb(242, 235, 235);
 }
 
 .link-upload {
@@ -350,4 +364,31 @@ footer {
 
 .content, #myProfile, #myResources {
     margin-left: 5%;
+}
+
+#add-admin-btn, #upload-btn {
+    margin-bottom: 5%;
+}
+
+input[type="file"] {
+    display: none !important;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.empty-message {
+   color: #523A28;
+   font-size: large;
+   font-weight: 600;
+   margin-left: 8%;
+   margin-top: 5%;
+}
+
+#empty-message-myresources, #empty-message-homepage {
+    margin-left: 5% !important;
 }

@@ -95,7 +95,7 @@ create trigger notify_for_deleted_resource
 before delete on resources
 for each row
 	insert into notifications(user_id, message)
-	(select user_id, concat('The resource "', old.title, '" you have been reading is deleted.') from resources_taken
+	(select user_id, concat('Ресурсът  "', old.title, '" , който четеше, е изтрит.') from resources_taken
 	 where resources_taken.resource_id = old.resource_id);
 
 
