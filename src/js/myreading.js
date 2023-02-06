@@ -66,6 +66,9 @@ function myreadingCall(url) {
                 case 'author':
                     label = 'Автор';
                     break;
+                case 'link':
+                    label = 'Линк към ресурса';
+                    break;
                 case 'date':
                     label= 'Дата за връщане';
                     break;
@@ -115,11 +118,22 @@ function myreadingCall(url) {
                     default:
                         break;
                 }
+
+                console.log('cols', cols[j]);
+            }
+            var cell = trow.insertCell(-1);
+            var link = list[i]["link"];
+
+            if (link.startsWith("uploadedFiles")) {
+                link = '../' + link;
             }
 
+            cell.innerHTML = '<button class="action-btn" type=\"button\" ' +
+            'onclick=\"window.open(\'' + link + '\')\">Виж</button>';
             var cell = trow.insertCell(-1);
             cell.innerHTML = '<button class="action-btn" type=\"button\" ' +
-                'onclick=\"returnResource(\'' + list[i]["resource_id"] + '\')\">Върни</button>';
+            'onclick=\"returnResource(\'' + list[i]["resource_id"] + '\')\">Върни</button>';
+            console.log(list[i]);
         }
         
         var el = document.getElementById("resources");
@@ -131,6 +145,13 @@ function myreadingCall(url) {
 const returnResource = (resourceId) => {
     var url = '../src/controllers/myreading.php';
     returnResourceCall(url, resourceId);
+}
+
+const seeResource = (link) => {
+    console.log(link);
+
+    window.location.href = link;
+
 }
 
 function returnResourceCall(url, resourceId) {

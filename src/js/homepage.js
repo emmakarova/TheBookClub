@@ -11,13 +11,15 @@ const homepage = async () => {
     .then(function(result) {
         return result;
     });
-
+    if (allResources == null || allResources.length == 0) {
+        return;
+    }
     var cols = [];
-            
+    console.log(allResources);
     for (var i = 0; i < allResources.length; i++) {
         for (var k in allResources[i]) {
             if (cols.indexOf(k) === -1) {
-                if (k == 'resource_id' || k == 'max_readers' || k == 'current_readers') {
+                if (k == 'resource_id' || k == 'max_readers' || k == 'current_readers' || k == 'link') {
                     continue;
                 }
                 cols.push(k);
@@ -38,14 +40,14 @@ const homepage = async () => {
             case 'author':
                 label = 'Автор';
                 break;
-            case 'link':
-                label= 'Линк към ресурса';
-                break;
             case 'max_reading_days':
                 label = 'Дни за четене';
                 break;
             case 'times_read':
                 label = 'Брой заемания';
+                break;
+            case 'rate':
+                label = 'Оценка';
                 break;
             default:
                 break;
@@ -92,11 +94,14 @@ function insertResourceInTable(cols, resource, table, buttonTag) {
         
         if (j == cols.length - 1) {
             cell.innerHTML = buttonTag;
+        } else if (cols[j] == 'rate' && resource[cols[j]] == null) {
+            cell.innerHTML = '--';
         } else {
             cell.innerHTML = resource[cols[j]];
         }
 
         switch(cols[j]) {
+            case 'rate':
             case 'max_reading_days':
             case 'times_read':
                 cell.className = "number-cell";
