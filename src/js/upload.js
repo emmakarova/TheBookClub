@@ -1,6 +1,71 @@
 const uploadResource = () => {
+    var linkErrors = document.getElementById("link-error");
+    linkErrors.innerHTML = "";
+
+    var titleErrors = document.getElementById("title-error");
+    titleErrors.innerHTML = "";
+
+    var authorErrors = document.getElementById("author-error");
+    authorErrors.innerHTML = "";
+
+    var readersErrors = document.getElementById("readers-error");
+    readersErrors.innerHTML = "";
+
+    var daysErrors = document.getElementById("days-error");
+    daysErrors.innerHTML = "";
+
+    if (!validateInput()) {
+        return;
+    }
+   
     var url = '../src/controllers/upload.php';
     uploadResourceCall(url);
+}
+
+function validateInput() {
+    var validInput = true;
+
+    var link = document.getElementById("link");
+   
+    if (link.style.display == 'block' && (link.value == null || link.value.length == 0)) {
+        var linkErrors = document.getElementById("link-error");
+        linkErrors.innerHTML = 'Моля попълни полето за линк!';
+        validInput = false;
+    }
+
+    var title = String(document.querySelector('#title').value);
+
+    if (title == null || title.length == 0) {
+        var titleErrors = document.getElementById("title-error");
+        titleErrors.innerHTML = 'Моля попълни полето за заглавие!';
+        validInput = false;
+    }
+
+    var author = String(document.querySelector('#author').value);
+
+    if (author == null || author.length == 0) {
+        var authorErrors = document.getElementById("author-error");
+        authorErrors.innerHTML = 'Моля попълни полето за автор!';
+        validInput = false;
+    }
+
+    var readers = String(document.querySelector('#max-readers').value);
+
+    if (readers == null || readers == 0) {
+        var readersErrors = document.getElementById("readers-error");
+        readersErrors.innerHTML = 'Моля попълни полето за брой читатели!';
+        validInput = false;
+    }
+
+    var days = String(document.querySelector('#max-days').value);
+
+    if (days == null || days == 0) {
+        var daysErrors = document.getElementById("days-error");
+        daysErrors.innerHTML = 'Моля попълни полето за дни за заемане!';
+        validInput = false;
+    }
+
+    return validInput;
 }
 
 function showSuccessMessage(message) {
@@ -81,7 +146,14 @@ const allowChoosenInput = () => {
     var file = document.getElementById("file");
 
     link.disabled = !linkBtn.checked;
-    link.style.display = linkBtn.checked ? "block" : "none";
+    
+    if (linkBtn.checked) {
+        link.style.display = "block";
+    } else {
+        var linkErrors = document.getElementById("link-error");
+        linkErrors.innerHTML = "";
+        link.style.display = "none";
+    }
 
     file.disabled = !fileBtn.checked;
     file.style.display = fileBtn.checked ? "block" : "none";

@@ -32,18 +32,23 @@
                         <label for="file-btn" class="upload-label">Файл</label>
                     </section>
 
-                    <input type="text" class="upload-input" name="link" id="link" placeholder="Линк">
+                    <input type="text" class="upload-input" name="link" id="link" placeholder="Линк" style="display: block;">
+                    <p class="error" id="link-error"></p>
                     <input class="upload-input" id="file" type="file" name="fileupload" style="display: none;"/>
                 </fieldset>
 
                 <fieldset>
                     <input type="text" name="title" class="upload-input" id="title" placeholder="Заглавие" required>
+                    <p class="error" id="title-error"></p>
 
                     <input type="text" name="author" class="upload-input" id="author" placeholder="Автор" required>
+                    <p class="error" id="author-error"></p>
 
                     <input type="number" name="max-readers" class="upload-input" id="max-readers" placeholder="Брой читатели" required>
+                    <p class="error" id="readers-error"></p>
 
                     <input type="number" name="max-days" class="upload-input" id="max-days" placeholder="Дни за заемане" required>
+                    <p class="error" id="days-error"></p>
                 </fieldset>
                 
                 <button type="button" class="btn" id="upload-btn" name="submit" onclick="uploadResource()">Добави</button>
