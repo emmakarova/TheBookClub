@@ -33,8 +33,19 @@ function registerCall(url){
             console.log("response = ", xhr.responseText, "\nstatus = ", xhr.status);
             return;
         }
-        console.log(xhr.response);
-        window.location.href = xhr.responseText;
+        
+        showSuccessMessage("Успешно регистриран администратор!");
+        form.reset();
     }
 }
   
+function showSuccessMessage(message) {
+    var success = document.getElementById("addadmin-response-message");
+    success.innerHTML = message;
+    success.style.padding = "0.5%";
+
+    setTimeout(() => {
+        success.style.display = "none";
+        success.style.padding = "0%";
+    }, 5000);
+}

@@ -71,10 +71,11 @@ function validateInput() {
 function showSuccessMessage(message) {
     var success = document.getElementById("upload-response-message");
     success.innerHTML = message;
-    document.body.insertBefore(success, document.body.children[1]);
+    success.style.padding = "0.5%";
 
     setTimeout(() => {
         success.style.display = "none";
+        success.style.padding = "0%";
     }, 5000);
 }
 
@@ -119,8 +120,8 @@ function uploadResourceCall(url) {
         }
 
         showSuccessMessage(xhr.responseText);
-
         form.reset();
+        allowChoosenInput();
     }
 }
 
@@ -154,7 +155,6 @@ const allowChoosenInput = () => {
         linkErrors.innerHTML = "";
         link.style.display = "none";
     }
-
     file.disabled = !fileBtn.checked;
     file.style.display = fileBtn.checked ? "block" : "none";
 }

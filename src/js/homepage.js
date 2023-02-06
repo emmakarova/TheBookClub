@@ -179,6 +179,27 @@ function take(id) {
         if (xhr.status != 200) {
            console.log("err", xhr.response);
         }
+
+        sessionStorage.reloadAfterPageLoad = 'true';
+        sessionStorage.setItem("return-message", xhr.responseText);
+        
         location.reload();
     }
+}
+
+function showSuccessMessage() {
+    if (sessionStorage.reloadAfterPageLoad != 'true') {
+        return;
+    }
+
+    let message = sessionStorage.getItem("return-message");
+    var success = document.getElementById("homepage-response-message");
+    success.innerHTML = message;
+
+    sessionStorage.reloadAfterPageLoad = 'false';
+    sessionStorage.removeItem("return-message");
+
+    setTimeout(() => {
+        success.style.display = "none";
+    }, 5000);
 }

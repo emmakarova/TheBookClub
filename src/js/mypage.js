@@ -6,20 +6,21 @@ const mypage = () => {
 }
 
 function showSuccessMessage() {
-    if (!sessionStorage.reloadAfterPageLoad) {
+    if (sessionStorage.reloadAfterPageLoad != 'true') {
         return;
     }
 
     let message = sessionStorage.getItem("delete-message");
     var success = document.getElementById("delete-response-message");
     success.innerHTML = message;
-    document.body.insertBefore(success, document.body.children[1]);
+    success.style.padding = "0.5%";
 
-    sessionStorage.reloadAfterPageLoad = false;
+    sessionStorage.reloadAfterPageLoad = 'false';
     sessionStorage.removeItem("delete-message");
 
     setTimeout(() => {
         success.style.display = "none";
+        success.style.padding = "0%";
     }, 5000);
 }
 
@@ -190,7 +191,7 @@ function deleteResourceCall(url, resourceId) {
             return;
         }
 
-        sessionStorage.reloadAfterPageLoad = true;
+        sessionStorage.reloadAfterPageLoad = 'true';
         sessionStorage.setItem("delete-message", xhr.responseText);
 
         location.reload();

@@ -21,7 +21,7 @@
     // Check if file already exists
     if (file_exists($location)) {
         http_response_code(409);
-        exit('A file with this name already exists.');
+        exit('Файл с това име вече съществува.');
     }
 
     /* Save the uploaded file to the local filesystem */
@@ -30,6 +30,4 @@
     } else { 
         echo 'Неуспешно добавен файл!'; 
     }
-
-    exit();
 ?>

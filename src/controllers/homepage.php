@@ -56,5 +56,7 @@
             http_response_code(500);
             exit('Something went wrong!');
         }
+
+        echo 'Успешно зает ресурс!';
     }
 ?>

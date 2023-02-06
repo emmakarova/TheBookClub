@@ -1,0 +1,71 @@
+function validate() {
+    var errors = '';
+
+    var username = String(document.querySelector('#username').value);
+    console.log(username, '\n');
+    if (username.length < 3 || username.length > 10) {
+        errors += 'Потребителското име трябва да съдържа между 3 и 10 символа.\n';
+    }
+
+    var name = String(document.querySelector('#name').value);
+    console.log(name, '\n')
+    if (name.length < 1 || name.length > 50) {
+        errors += 'Името трябва да съдържа под 50 символа.\n';
+    }
+
+    var familyName = String(document.querySelector('#family-name').value);
+    console.log(familyName, '\n')
+    if (familyName.length < 1 || familyName.length > 50) {
+        errors += 'Фамилията трябва да съдържа под 50 символа.\n';
+    }
+
+    var email = String(document.querySelector('#email').value);
+    console.log(email, '\n')
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (email.length < 1 || !email.match(validRegex)) {
+        errors += 'Имейл адресът трябва да е в правилен формат.\n';
+    }
+
+    // Lower and upper case + numbers check!!
+    var password = String(document.querySelector('#password').value);
+    console.log(password, '\n')
+    if (password.length < 6 || password.length > 10) {
+        errors += 'Паролата трябва да съдържа между 6 и 10 символа.\n';
+    }
+
+    return errors;
+}
+
+const login = () => {
+    var url = 'https://jsonplaceholder.typicode.com/users';
+    validateErrors = validate();
+    if (validateErrors == '') {
+        loginCall(url, {success: "Успешна регистрация!"});
+    }
+}
+
+function loginCall(url){
+    const form = document.querySelector('#register-form');
+    const username = document.querySelector('#username').value;
+ 
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function(){
+            if (xhr.status == 200) {
+                xhr.response.forEach(element => {
+                    if (username == element['username']) {
+                        console.log(element)
+                    }
+                });
+        } else {
+              console.error(xhr.responseText);
+        } };
+
+        xhr.open('GET', url, true);
+        xhr.responseType = "json";
+        xhr.send();
+    })
+}
+  
