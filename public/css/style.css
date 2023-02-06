@@ -6,12 +6,11 @@ html {
     background-color: rgb(235, 198, 239);
     background-size: 100% 100%;
     min-height: 100%;
+    position: relative;
 }
 
 body {
     font-family: 'Ubuntu', sans-serif;
-    display:flex;
-    flex-direction:column;
 }
 
 main:not(.page) {
@@ -119,7 +118,7 @@ a:not(.linkedin-info, #github-info) {
 }
 
 #nav-placeholder {
-    overflow: auto;
+    overflow: visible;
     position: sticky;
     top: 0%;
 }
@@ -128,6 +127,7 @@ nav {
     margin-left: 10%;
     display: flex;
     justify-content: center;
+    z-index: 1;
 }
 
 nav a {
@@ -166,8 +166,8 @@ section:not(.content, .upload-section, #myProfile, #myProfile, #myResources, ) {
 .page {
     margin-left: 5%;
     margin-right: 5%;
+    margin-bottom: 10%;
     padding-bottom: 20px;
-    /* border: solid black; */
 }
 
 #search {
@@ -284,9 +284,17 @@ h3 {
     font-size: 18px;
 }
 
+header {
+    background-color: rgba(0, 0, 0, 0.05);
+    z-index: 1;
+}
+
 footer {
     background-color: rgba(0, 0, 0, 0.05);
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 1; 
 }
 
 #reading-girl {
