@@ -3,6 +3,16 @@ const uploadResource = () => {
     uploadResourceCall(url);
 }
 
+function showSuccessMessage(message) {
+    var success = document.getElementById("upload-response-message");
+    success.innerHTML = message;
+    document.body.insertBefore(success, document.body.children[1]);
+
+    setTimeout(() => {
+        success.style.display = "none";
+    }, 5000);
+}
+
 function uploadResourceCall(url) {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', url);
@@ -43,10 +53,7 @@ function uploadResourceCall(url) {
             return;
         }
 
-        uploadErrors.innerHTML = "";
-        var success = document.getElementById("success-message");
-        success.innerHTML = xhr.responseText;
-        $('#success-message').show(1).delay(5000).hide(1);
+        showSuccessMessage(xhr.responseText);
 
         form.reset();
     }

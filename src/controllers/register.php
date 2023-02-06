@@ -4,7 +4,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         http_response_code(400);
-        exit('<p class="error">Unsuccessful login! Try again!</p>');
+        exit('Unsuccessful login! Try again!');
     }
 
     $firstName = $_POST['first-name'];
@@ -23,29 +23,29 @@
     $query = $db->prepare(GET_USER_USERNAME);
     if (!$query) {
         http_response_code(500);
-        exit('<p class="error">Unsuccessful login! Try again!</p>');
+        exit('Unsuccessful login! Try again!');
     }
 
     $query->bindParam(USERNAME_PARAM, $username, PDO::PARAM_STR);
     if (!$query->execute()) {
         http_response_code(500);
-        exit('<p class="error">Unsuccessful login! Try again!</p>');
+        exit('Unsuccessful login! Try again!');
     }
 
     if ($query->rowCount() > 0) {
         http_response_code(409);
-        exit('<p class="error">This username is already used!</p>');
+        exit('Това потребителско име вече е заето!');
     }
 
     if ($password != $confirm_password) {
         http_response_code(403);
-        exit('<p class="error">Passwords did not match.</p>');
+        exit('Въведените пароли не съвпадат!');
     }
     
     $insertQuery = $db->prepare(INSERT_USER);
     if (!$insertQuery) {
         http_response_code(500);
-        exit('<p class="error">Unsuccessful login! Try again!</p>');
+        exit('Unsuccessful login! Try again!');
     }
 
     $names = $firstName . " " . $lastName;
@@ -57,7 +57,7 @@
 
     if (!$insertQuery->execute()) {
         http_response_code(500);
-        exit('<p class="error">Unsuccessful login! Try again!</p>');
+        exit('Unsuccessful login! Try again!');
     }
 
     if ($admin_rights) {
@@ -66,6 +66,4 @@
     else {
         echo '../../public/login.html';
     }
-
-    exit();
 ?>

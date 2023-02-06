@@ -1,6 +1,7 @@
 const navigate = () => {
     var url = '../src/controllers/isAdmin.php';
     navigateCall(url);
+    showFooter();
 }
 
 function navigateCall(url) {
@@ -32,4 +33,8 @@ const navigateUser = () => {
 
 const navigateAdmin = () => {
     $("#nav-placeholder").load("../../public/adminNavigation.html");
+}
+
+const showFooter = () => {
+    $("#footer").load("../../public/footer.html");
 }

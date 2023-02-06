@@ -3,25 +3,15 @@ html {
     linear-gradient(225deg, rgba(254, 163, 170,0) 20%, rgba(254, 163, 170,.1) 20%, rgba(254, 163, 170,.1) 40%, rgba(254, 163, 170,.2) 40%, rgba(254, 163, 170,.2) 60%, rgba(254, 163, 170,.4) 60%, rgba(254, 163, 170,.4) 80%, rgba(254, 163, 170,.6) 80%),    
     linear-gradient(270deg, rgba(248, 184, 139,0) 20%, rgba(248, 184, 139,.1) 20%, rgba(248, 184, 139,.1) 40%, rgba(248, 184, 139,.2) 40%, rgba(248, 184, 139,.2) 60%, rgba(248, 184, 139,.4) 60%, rgba(248, 184, 139,.4) 80%, rgba(248, 184, 139,.6) 80%),
     linear-gradient(315deg, rgba(250, 248, 132,0) 20%, rgba(250, 248, 132,.1) 20%, rgba(250, 248, 132,.1) 40%, rgba(250, 248, 132,.2) 40%, rgba(250, 248, 132,.2) 60%, rgba(250, 248, 132,.4) 60%, rgba(250, 248, 132,.4) 80%, rgba(250, 248, 132,.6) 80%);
-    background-color: #ebc6ef;
+    background-color: rgb(235, 198, 239);
     background-size: 100% 100%;
     min-height: 100%;
 }
 
-/*shte oslepeq mahni go*/
-/* html{ 
-  background: 
-    linear-gradient(180deg, rgba(255,0,102,0) 20%, rgba(255,0,102,.1) 20%, rgba(255,0,102,.1) 40%, rgba(255,0,102,.2) 40%, rgba(255,0,102,.2) 60%, rgba(255,0,102,.4) 60%, rgba(255,0,102,.4) 80%, rgba(255,0,102,.6) 80%),
-    linear-gradient(-90deg, rgba(255,0,102,0) 20%, rgba(255,0,102,.1) 20%, rgba(255,0,102,.1) 40%, rgba(255,0,102,.2) 40%, rgba(255,0,102,.2) 60%, rgba(255,0,102,.4) 60%, rgba(255,0,102,.4) 80%, rgba(255,0,102,.6) 80%);
-  background-color: #fc0;
-  background-size: 100% 100%;
-  min-height: 100%;
-} */
-
-
 body {
-    /* background-color: #f3e8ec; */
     font-family: 'Ubuntu', sans-serif;
+    display:flex;
+    flex-direction:column;
 }
 
 main:not(.page) {
@@ -112,7 +102,7 @@ input:focus {
     margin-top: -10px;
 }
 
-a {
+a:not(.linkedin-info, #github-info) {
     text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
     color: #cf98d8;
     text-decoration: none;
@@ -128,10 +118,13 @@ a {
     }
 }
 
-nav {
+#nav-placeholder {
     overflow: auto;
     position: sticky;
     top: 0%;
+}
+
+nav {
     margin-left: 10%;
     display: flex;
     justify-content: center;
@@ -165,7 +158,7 @@ nav #logout-btn {
     margin-right: 2%;
 }
 
-section:not(.content, .upload-section, #myProfile, #myProfile, #myResources) {
+section:not(.content, .upload-section, #myProfile, #myProfile, #myResources, ) {
     display: flex;
     justify-content: center;
 }
@@ -191,7 +184,7 @@ section:not(.content, .upload-section, #myProfile, #myProfile, #myResources) {
 table {
     table-layout: auto;
     box-shadow:  0 4px 2px -4px #d4c5d6; 
-    min-width: 50%;
+    min-width: 65%;
     max-width: 85%;
 }
 
@@ -251,7 +244,7 @@ tr:nth-child(even) {
 
 #file {
     width: 100% !important;
-    background: #FFFFFF !important;
+    background: rgb(255, 255, 255) !important;
     padding: 10px 20px;
     border: none !important;
     text-align: center;
@@ -289,4 +282,64 @@ h3 {
 #myInfo {
     margin-left: 4%;
     font-size: 18px;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+#reading-girl {
+    width: 8%;
+    margin: 0.5%;
+    margin-left: 3%;
+}
+
+#contacts {
+    display: inline-block;
+    /* border: #7c388a solid; */
+    width: fit-content;
+    margin: 0;
+    margin-left: 10%;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-60%);
+    text-decoration: none;
+}
+
+ .linkedin-img {
+    width: 30%;
+}
+
+#github-img {
+    width: 10%;
+    margin-left: -1%;
+}
+
+.linkedin-info, #github-info {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-60%);
+    text-decoration: none;
+}
+
+.linkedin-info {
+    margin-left: 3.5%;
+}
+
+.profiles {
+    width: fit-content;
+    position: relative;
+    margin-bottom: -1%;
+}
+
+#github-p {
+    margin-top: 1%;
+}
+
+.content, #myProfile, #myResources {
+    margin-left: 5%;
 }

@@ -4,7 +4,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] != "GET") {
         http_response_code(400);
-        exit('<p class="error">Unexpected call!</p>');
+        exit('Unexpected call!');
     }
 
     $isAdmin = isset($_SESSION['admin_rights']) && $_SESSION['admin_rights'];

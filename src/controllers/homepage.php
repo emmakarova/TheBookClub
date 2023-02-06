@@ -4,7 +4,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] != "GET" && $_SERVER["REQUEST_METHOD"] != "POST") {
         http_response_code(400);
-        exit('<p class="error">Unexpected call!</p>');
+        exit('Unexpected call!');
     }
 
     session_start();
@@ -30,7 +30,7 @@
         $query->bindParam("user_id", $user_id, PDO::PARAM_INT);
         if (!$query->execute()) {
             http_response_code(500);
-            exit('<p class="error">Something went wrong!</p>');
+            exit('Something went wrong!');
         }
         
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -54,7 +54,7 @@
 
         if (!$query->execute()) {
             http_response_code(500);
-            exit('<p class="error">Something went wrong!</p>');
+            exit('Something went wrong!');
         }
     }
 ?>
