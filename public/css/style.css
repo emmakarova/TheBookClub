@@ -110,12 +110,31 @@ a:not(.linkedin-info, #github-info) {
     text-decoration: underline;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     main {
         border-radius: 0px;
         width: 80%;
         margin-top: 20%;
     }
+
+    #footer-title { 
+        font-size: 2em !important;
+    }
+
+    #github-info {
+        margin-top: 1% !important;
+        margin-left: 5% !important;
+    }
+    
+    .linkedin-info {
+        margin-left: 3.5% !important;
+        margin-right: 3.5% !important;
+    }
+}
+
+#resources {
+    min-height: .01%;
+    overflow-x: auto;
 }
 
 #nav-placeholder {
@@ -171,10 +190,6 @@ section:not(.content, .upload-section, #myProfile, #myProfile, #myResources, ) {
     padding-bottom: 20px;
 }
 
-#upload-main {
-    margin-bottom: 12%;
-}
-
 #search {
     border-radius: 5px;
     border: 1px solid rgb(117, 115, 115) ;
@@ -188,8 +203,9 @@ section:not(.content, .upload-section, #myProfile, #myProfile, #myResources, ) {
 
 table {
     table-layout: auto;
-    min-width: 65%;
+    /* min-width: 65%; */
     max-width: 85%;
+    /* width: 70%; */
     color: #523A28;
     background-color: rgba(255, 255, 255, 0.4);
     box-shadow: 0.5px 0.5px 0.5px 2px rgba(255, 255, 255, 0.6);
@@ -231,6 +247,7 @@ tr:nth-child(even) {
 
 #upload-main {
     width: 50%;
+    margin-bottom: 15%;
 }
 
 .upload-section {
@@ -288,6 +305,7 @@ fieldset {
 
 #upload-btn {
     margin-left: 70% !important;
+    margin-left: 5%;
 }
 
 h3 {
@@ -332,9 +350,10 @@ footer {
 #contacts {
     display: inline-block;
     width: 20%;
+    margin: 1%;
 }
 
- .linkedin-img {
+.linkedin-img {
     width: 30%;
 }
 
@@ -354,7 +373,7 @@ footer {
 }
 
 #github-info {
-    margin-left: 2%;
+    margin-left: 6.5%;
 }
 
 .linkedin-info {
@@ -364,11 +383,11 @@ footer {
 .profiles {
     width: fit-content;
     position: relative;
-    margin-bottom: -1%;
+    margin-bottom: 1%;
 }
 
 #github-p {
-    margin-top: 1%;
+    margin-top: 2%;
 }
 
 .content, #myProfile, #myResources {
