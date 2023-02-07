@@ -103,8 +103,6 @@ function insertResourceInTable(cols, resource, table, buttonTag) {
         
         if (j == cols.length - 1) {
             cell.innerHTML = buttonTag;
-        } else if (cols[j] == 'rate' && resource[cols[j]] == null) {
-            cell.innerHTML = '--';
         } else {
             cell.innerHTML = resource[cols[j]];
         }
@@ -122,6 +120,10 @@ function insertResourceInTable(cols, resource, table, buttonTag) {
             default:
                 break;
         }
+
+        if (cols[j] == 'rate' && resource[cols[j]] == null) {
+            cell.innerHTML = '--';
+        } 
     }
 }
 

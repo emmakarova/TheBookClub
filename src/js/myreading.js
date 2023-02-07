@@ -111,12 +111,11 @@ function myreadingCall(url) {
                     
                 // Inserting the cell at particular place
                 cell.innerHTML = list[i][cols[j]];
-                if (cols[j] == 'rate' && list[i][cols[j]] == null) {
-                    cell.innerHTML = '--';
-                }
 
                 switch(cols[j]) {
                     case 'date':
+                        cell.className = "number-cell";
+                        break;
                     case 'rate':
                         cell.className = "number-cell";
                         var floatRate = parseFloat(cell.innerHTML);
@@ -124,6 +123,10 @@ function myreadingCall(url) {
                         break;
                     default:
                         break;
+                }
+
+                if (cols[j] == 'rate' && list[i][cols[j]] == null) {
+                    cell.innerHTML = '--';
                 }
 
                 console.log('cols', cols[j]);
