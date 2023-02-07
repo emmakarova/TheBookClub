@@ -112,8 +112,6 @@ function insertResourceInTable(cols, resource, table, takeButtonTag, deleteButto
             cell.innerHTML = takeButtonTag;
         } else if (j == cols.length - 1) {
             cell.innerHTML = deleteButtonTag;
-        } else if (cols[j] == 'rate' && resource[cols[j]] == null) {
-            cell.innerHTML = '--';
         } else {
             cell.innerHTML = resource[cols[j]];
         }
@@ -131,7 +129,13 @@ function insertResourceInTable(cols, resource, table, takeButtonTag, deleteButto
             default:
                 break;
         }
+
+        if (cols[j] == 'rate' && resource[cols[j]] == null) {
+            cell.innerHTML = '--';
+        } 
     }
+
+    
 }
 
 function isAlreadyTaken(resource, userResources) {

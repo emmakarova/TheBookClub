@@ -110,7 +110,7 @@ a:not(.linkedin-info, #github-info) {
     text-decoration: underline;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 600px) {
     main {
         border-radius: 0px;
         width: 80%;
@@ -129,6 +129,14 @@ a:not(.linkedin-info, #github-info) {
     .linkedin-info {
         margin-left: 3.5% !important;
         margin-right: 3.5% !important;
+    }
+
+    #upload-main {
+        width: 400px !important;
+    }
+
+    form #upload-btn {
+        margin-left: 35% !important;
     }
 }
 
@@ -246,7 +254,7 @@ tr:nth-child(even) {
 }
 
 #upload-main {
-    width: 50%;
+    width: 600px;
     margin-bottom: 15%;
 }
 
@@ -304,8 +312,7 @@ fieldset {
 }
 
 #upload-btn {
-    margin-left: 70% !important;
-    margin-left: 5%;
+    margin-left: 60% !important;
 }
 
 h3 {

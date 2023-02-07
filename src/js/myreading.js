@@ -166,7 +166,7 @@ const seeResource = (link) => {
 
 function returnResourceCall(url, resourceId) {
     let rate;
-    let ratePrompt = prompt("Please rate the resource (1-5):", "5");
+    let ratePrompt = prompt("Можете да оцените ресурса (1-5):", "5");
     if (ratePrompt == null || ratePrompt == "") {
         return;
     } else {
