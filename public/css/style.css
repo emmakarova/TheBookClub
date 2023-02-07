@@ -197,11 +197,13 @@ table {
 
 th {
     font-size: large;
+    padding-left: 10px;
 }
 
 td {
     font-size: large;
     padding-top: 1%;
+    padding-left: 10px;
 }
 
 tr:nth-child(even) {
@@ -308,26 +310,28 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    z-index: 1; 
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #reading-girl {
     width: 8%;
-    margin: 0.5%;
-    margin-left: 3%;
+}
+
+#footer-title {
+    font-size: 4em;
+    font-family: Gill Sans;
+    font-weight: 500;
+    color: rgb(95, 2, 31);
+    height: fit-content;
+    margin: 0;
 }
 
 #contacts {
     display: inline-block;
-    /* border: #7c388a solid; */
-    width: fit-content;
-    margin: 0;
-    margin-left: 10%;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-60%);
-    text-decoration: none;
+    width: 20%;
 }
 
  .linkedin-img {
@@ -335,8 +339,8 @@ footer {
 }
 
 #github-img {
-    width: 10%;
-    margin-left: -1%;
+    width: 30%;
+    margin-left: -3%;
 }
 
 .linkedin-info, #github-info {
@@ -346,6 +350,11 @@ footer {
     -ms-transform: translateY(-50%);
     transform: translateY(-60%);
     text-decoration: none;
+    font-family: Gill Sans;
+}
+
+#github-info {
+    margin-left: 2%;
 }
 
 .linkedin-info {

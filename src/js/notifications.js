@@ -96,7 +96,7 @@ function notificationsCall(url) {
             if (list[i]["seen"]) {
                 cell.innerHTML = '<button class="action-btn btn-taken" id="' + id + '" type=\"button\" disabled=true>Проченето</button>';
             } else {
-                cell.innerHTML = '<button class="action-btn btn-taken" id="' + id + '" type=\"button\" ' + 
+                cell.innerHTML = '<button class="action-btn" id="' + id + '" type=\"button\" ' + 
                     'onclick="markAsRead(\'' + list[i]["notification_id"] + '\', \'' + id + '\')" >Отбележи като проченето</button>';
             }
         }
