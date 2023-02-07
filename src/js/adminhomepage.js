@@ -59,6 +59,9 @@ const homepage = async () => {
             case 'times_read':
                 label = 'Брой заемания';
                 break;
+            case 'rate':
+                label = 'Оценка';
+                break;
             default:
                 break;
         }
@@ -109,11 +112,18 @@ function insertResourceInTable(cols, resource, table, takeButtonTag, deleteButto
             cell.innerHTML = takeButtonTag;
         } else if (j == cols.length - 1) {
             cell.innerHTML = deleteButtonTag;
+        } else if (cols[j] == 'rate' && resource[cols[j]] == null) {
+            cell.innerHTML = '--';
         } else {
             cell.innerHTML = resource[cols[j]];
         }
 
         switch(cols[j]) {
+            case 'rate':
+                cell.className = "number-cell";
+                var floatRate = parseFloat(cell.innerHTML);
+                cell.innerHTML = floatRate.toPrecision(3);
+                break;
             case 'max_reading_days':
             case 'times_read':
                 cell.className = "number-cell";

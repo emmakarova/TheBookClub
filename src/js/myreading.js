@@ -119,6 +119,8 @@ function myreadingCall(url) {
                     case 'date':
                     case 'rate':
                         cell.className = "number-cell";
+                        var floatRate = parseFloat(cell.innerHTML);
+                        cell.innerHTML = floatRate.toPrecision(3);
                         break;
                     default:
                         break;
