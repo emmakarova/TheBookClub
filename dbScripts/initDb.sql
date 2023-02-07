@@ -118,3 +118,29 @@ do
 	where date_to_return < now();
 
 -- drop event clean_up_expired_resources;
+
+
+-- add admin
+insert into users(user_id, username, password, names, admin_rights) values(1,'admin', '$2y$10$Bsc8f0U4nkdg78F1A04.NO9PPHwx1QIlvgTyD1MXZTfLkndYrF92G', 'Admin', true);
+-- add user
+insert into users(user_id, username, password, names, admin_rights) values(2,'user1', '$2y$10$IOEoS12vDNOAZ6pynWpR/udII1NwK5OF9JeNO0PVlTHCjlqsqgeje', 'User 1', false);
+
+-- add resources
+insert into resources (resource_id,uploaded_by, link, title, author, max_readers, max_reading_days)
+    values (1,2, 'https://chitanka.info/book/6330-kradetsyt-na-knigi', 'Крадецът на книги', 'Маркъс Зусак', 3, 10);
+
+insert into resources (resource_id,uploaded_by, link, title, author, max_readers, max_reading_days)
+values (2,2, 'https://chitanka.info/book/1040-hari-potyr-i-filosofskijat-kamyk', 'Хари Потър и философският камък', 'Джоан Роулинг', 3, 8);
+
+insert into resources (resource_id,uploaded_by, link, title, author, max_readers, max_reading_days)
+values (3,1, 'https://chitanka.info/book/3066-ana-karenina', 'Ана Каренина', 'Лев Толстой', 5, 20);
+
+insert into resources (resource_id,uploaded_by, link, title, author, max_readers, max_reading_days)
+values (4,1, 'https://chitanka.info/book/2168-jane-eyre-bruleni-hulmove', 'Брулени хълмове', 'Шарлот Бронте, Емили Бронте', 7, 10);
+
+
+-- add resources taken
+insert into resources_taken(resource_id, user_id) values (3, 1);
+insert into resources_taken(resource_id, user_id) values (1, 1);
+insert into resources_taken(resource_id, user_id) values (1, 2);
+insert into resources_taken(resource_id, user_id) values (4, 2);
