@@ -28,7 +28,7 @@ const homepage = async () => {
     for (var i = 0; i < allResources.length; i++) {
         for (var k in allResources[i]) {
             if (cols.indexOf(k) === -1) {
-                if (k == 'resource_id' || k == 'max_readers' || k == 'current_readers') {
+                if (k == 'resource_id' || k == 'link' || k == 'max_readers' || k == 'current_readers') {
                     continue;
                 }
                 cols.push(k);
@@ -86,10 +86,10 @@ const homepage = async () => {
         var deleteButtonTag = '<button class="action-btn" type=\"button\" onclick=\"deleteResource(' + allResources[i]['resource_id'] + ')\">Изтрий</button>';
 
         if (isAlreadyTaken(allResources[i],userResources)) {
-            takeButtonTag = '<button class="action-btn" type=\"button\" disabled=true>Зает от мен</button>';
+            takeButtonTag = '<button class="action-btn btn-taken" type=\"button\" disabled=true>Зает от мен</button>';
         }
         else if (allResources[i].current_readers >= allResources[i].max_readers) {
-            takeButtonTag = '<button class="action-btn" type=\"button\" disabled=true>Неналичен</button>';
+            takeButtonTag = '<button class="action-btn btn-taken" type=\"button\" disabled=true>Неналичен</button>';
         }
         else {
             takeButtonTag = '<button class="action-btn" type=\"button\" onclick=\"take(' + allResources[i]['resource_id'] + ',' + (i+1) + ')\">Заеми</button>';
