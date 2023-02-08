@@ -242,6 +242,8 @@ tr:nth-child(even) {
     font-weight: 600;
     text-decoration: underline;
     color: #35251ab5;
+    display: block;
+    margin: auto;
 }
 
 .btn-taken {
