@@ -5,7 +5,7 @@ create table users (
 	username varchar (15) unique not null,
 	password varchar (63) unique not null,
 	names varchar (63) unique not null, 
-	admin_rights bool not null default false
+	admin_rights boolean not null default false
 );
 
 create table resources (
@@ -20,6 +20,8 @@ create table resources (
 	times_read int default 0,
 	constraint fk_uploaded_by_user foreign key (uploaded_by) references users(user_id) on delete cascade
 );
+
+SET SQL_MODE='NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
 
 create table resources_taken (
 	resource_id bigint unsigned not null, 
@@ -44,7 +46,7 @@ create table notifications (
 	notification_id serial primary key,
 	user_id bigint unsigned not null,
 	message varchar(1023) not null,
-	seen bool not null default false,
+	seen boolean not null default false,
 	received_at timestamp not null default now(),
 	constraint fk_notified_user foreign key (user_id) references users(user_id) on delete cascade
 );
@@ -107,7 +109,7 @@ for each row
 
 -- SCHEDULER
 	
-set global event_scheduler = on;
+set global event_scheduler = 'ON';
 
 create event clean_up_expired_resources
 on schedule every 1 minute

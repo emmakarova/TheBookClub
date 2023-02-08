@@ -61,9 +61,9 @@
     }
 
     if ($admin_rights) {
-        echo "../../public/adminHomepage.html";
+        echo "../public/adminHomepage.html";
     }
     else {
-        echo '../../public/login.html';
+        echo '../public/login.html';
     }
 ?>
