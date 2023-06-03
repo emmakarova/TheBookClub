@@ -48,7 +48,7 @@ function myProfileCall(url) {
 
         var profileType = document.createElement("p");
         profileType.innerHTML = "<strong>Вид на профила:</strong> ";
-        if (list[0]["admin_rights"]) {
+        if (list[0]["admin_rights"] == "true") {
             profileType.innerHTML += "Администратор";
         } else {
             profileType.innerHTML += "Потребител";

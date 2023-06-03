@@ -12,5 +12,5 @@
     unset($_SESSION["user_id"]);
     session_destroy();
    
-    echo '../../public/login.html';
+    echo '../public/login.html';
 ?>

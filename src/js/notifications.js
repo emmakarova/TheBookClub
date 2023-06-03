@@ -93,7 +93,7 @@ function notificationsCall(url) {
             // add Mark as read button
             var cell = trow.insertCell(-1);
             var id = "readBtn" + i;
-            if (list[i]["seen"]) {
+            if (list[i]["seen"] == "1") {
                 cell.innerHTML = '<button class="action-btn btn-taken" id="' + id + '" type=\"button\" disabled=true>Проченето</button>';
             } else {
                 cell.innerHTML = '<button class="action-btn" id="' + id + '" type=\"button\" ' + 
@@ -137,7 +137,6 @@ function markAsReadCall(url, notificationId, btnId) {
         
         var readBtn = document.getElementById(btnId);
         readBtn.disabled = true;
-        readBtn.innerHTML = "Read";
 
         location.reload();
     }

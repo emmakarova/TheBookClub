@@ -28,13 +28,13 @@ function navigateCall(url) {
 }
 
 const navigateUser = () => {
-    $("#nav-placeholder").load("../../public/navigation.html");
+    $("#nav-placeholder").load("../public/navigation.html");
 }
 
 const navigateAdmin = () => {
-    $("#nav-placeholder").load("../../public/adminNavigation.html");
+    $("#nav-placeholder").load("../public/adminNavigation.html");
 }
 
 const showFooter = () => {
-    $("#footer").load("../../public/footer.html");
+    $("#footer").load("../public/footer.html");
 }
